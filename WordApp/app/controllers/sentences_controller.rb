@@ -1,6 +1,6 @@
 class SentencesController < ApplicationController
   before_action :set_sentence, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /sentences
   # GET /sentences.json
   def index
