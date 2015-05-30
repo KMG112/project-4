@@ -2,17 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#box{
- 	width: 130px;
+
+#box1, #box2, #box3, #box4, #box5 {
+
+  width: 130px;
   height: 30px; 
   padding: 0.5em; 
   border: 3px solid red;
-
+  display: inline-block;
+  &:hover{
+  		box-shadow: 10px 10px 20px blue;
+  	}
   }
 
-  #droppable{
+  #droppable1, #droppable2, #droppable3, #droppable4, #droppable5{
  	width: 150px;
   height: 40px; 
   padding: 0.5em; 
   border: 3px solid red;
+  display: inline-block;
   }
