@@ -17,14 +17,12 @@ ActiveRecord::Schema.define(version: 20150528215933) do
   enable_extension "plpgsql"
 
   create_table "sentences", force: :cascade do |t|
-    t.string   "word1"
-    t.string   "word2"
-    t.string   "word3"
-    t.string   "word4"
-    t.string   "word5"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "words",      default: [],              array: true
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
+
+  add_index "sentences", ["words"], name: "index_sentences_on_words", using: :gin
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
