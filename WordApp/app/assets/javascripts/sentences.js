@@ -10,7 +10,7 @@ $(document).ready(function(){
 	// creating draggable objects with for statement
 	// objects created will get value from the position they are in, 
 	// in the active record array
-	var createDrag = function(){
+	var createDrag = function(box){
 		$('#words').remove();
 		$('body').append('<div id="words"></div>')
 			for(var i=0; i<5; i++){
@@ -24,8 +24,21 @@ $(document).ready(function(){
 		  		$('#box'+i).on('drag', function(){
 		  			makeDroppable(this);
 		  		});
-		 
+		 	
 			}// for loop end
+			$.ajax({
+			    type: "GET",
+			    url: "http://localhost:3000/sentences/1",
+			    dataType: "json",
+			    success: function(data) {
+			    	console.log(data.content);
+			      for(var j=0; j<data.content.length; j++){	
+			      	 $('#box'+j).text(data.content[j]);    
+			      	 
+			      	};
+			    }//success end
+			 
+		 	});//ajax end
 	}//createDrag ends
   	createDrag();
 	// function to make only selected item dropped into droppable div    
@@ -45,22 +58,8 @@ $(document).ready(function(){
   			$(this).text($(box).text())
             $(box).off();
             $( this ).off();
-            createDroppableObject();	 	 
-             // getting data from database
-		    createDrag();
-		    $.ajax({
-			    type: "GET",
-			    url: "http://localhost:3000/sentences/1",
-			    dataType: "json",
-			    success: function(data) {
-			    	console.log();
-			      for(var j=0; j<data.content.length; j++){	       
-			      	 $('draggable').text($(box).text());
-			      	};
-			    }//seccess end
-			 
-		 	});//ajax end
-
+            createDroppableObject();	 	 	 
+		    createDrag(box);
           }
          
 
@@ -75,7 +74,6 @@ $(document).ready(function(){
 		    url: "http://localhost:3000/sentences/1",
 		    dataType: "json",
 		    success: function(data) {
-		    	console.log(data);
 		      for(var j=0; j<data.content.length; j++){	       
 		      	 $('#box'+j).text(data.content[j]);
 		      	};
