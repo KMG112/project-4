@@ -10,14 +10,21 @@ class SentencesController < ApplicationController
   # GET /sentences/1
   # GET /sentences/1.json
   def show
-      @word = Word.first
-    respond_to do |format|
-        format.html
-        format.json {
-            render :json => {'content' => @word.content}
-        }
-    end
-    
+      i=0
+      words = []
+      while i<5
+        word = Word.getWord("noun")
+        words << word
+        i+= 1
+      end
+      respond_to do |format|
+          format.html
+          format.json {
+              render :json => {'content' => words}
+          }
+      
+      end
+ 
   end
 
   # GET /sentences/new
