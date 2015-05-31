@@ -10,6 +10,14 @@ class SentencesController < ApplicationController
   # GET /sentences/1
   # GET /sentences/1.json
   def show
+      @word = Word.first
+    respond_to do |format|
+        format.html
+        format.json {
+            render :json => {'content' => @word.content}
+        }
+    end
+    
   end
 
   # GET /sentences/new
@@ -25,11 +33,12 @@ class SentencesController < ApplicationController
   # POST /sentences.json
   def create
     @sentence = Sentence.new(sentence_params)
-
+    @word = Word.first
+    binding.pry
     respond_to do |format|
       if @sentence.save
         format.html { redirect_to @sentence, notice: 'Sentence was successfully created.' }
-        format.json { render :show, status: :created, location: @sentence }
+        format.json { render :show, status: :created, location: @sentence } 
       else
         format.html { render :new }
         format.json { render json: @sentence.errors, status: :unprocessable_entity }
