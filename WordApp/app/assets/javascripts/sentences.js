@@ -23,7 +23,7 @@ ready = function(){
 
 	$('#new_sentence').on('submit', function(event){
 		event.preventDefault();
-		console.log(this);
+
 		        $.ajax({
 				  type: "POST",
 				  url: "/sentences",
@@ -40,7 +40,7 @@ ready = function(){
 	// objects created will get value from the position they are in, 
 	// in the active record array
 	var createDrag = function(box){
-		console.log(sentence_array);
+
 		$('#words').remove();
 		$('body').append('<div id="words"></div>')
 			for(var i=0; i<5; i++){
@@ -76,8 +76,8 @@ ready = function(){
             $(this).removeAttr('id');
   			$(this).attr('id', 'dropped');
   			sentence_array.push($(box).text());
-  			
-  			$(this).text($(box).text());
+  			var current_text = $(this).text()
+  			$(this).text($(box).text()+current_text);
             $(box).off();
             $( this ).off();
             createDroppableObject();	 	 	 
@@ -89,7 +89,10 @@ ready = function(){
   		
   	} //make droppable end
 
-  
+  	$('#suffixes p').click(function(event){
+
+  		$('#droppable').text($(this).text())
+  	})
 
 	if(pathname==='/sentences/new'){ // only renders on new page
 		createDroppableObject();// creates the bucket to drop word into
