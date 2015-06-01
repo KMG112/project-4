@@ -10,6 +10,13 @@ class SentencesController < ApplicationController
   # GET /sentences/1
   # GET /sentences/1.json
   def show
+      
+ 
+  end
+
+  # GET /sentences/new
+  def new
+    @sentence = Sentence.new
       i=0
       words = []
       pos_array = ["noun","noun","adjective","others","verb","verb"]
@@ -26,12 +33,6 @@ class SentencesController < ApplicationController
           }
       
       end
- 
-  end
-
-  # GET /sentences/new
-  def new
-    @sentence = Sentence.new
   end
 
   # GET /sentences/1/edit
@@ -42,8 +43,10 @@ class SentencesController < ApplicationController
   # POST /sentences.json
   def create
     @sentence = Sentence.new(sentence_params)
+
     respond_to do |format|
       if @sentence.save
+        binding.pry
         format.html { redirect_to @sentence, notice: 'Sentence was successfully created.' }
         format.json { render :show, status: :created, location: @sentence } 
       else
