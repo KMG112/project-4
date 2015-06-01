@@ -29,7 +29,7 @@ $(document).ready(function(){
 			}// for loop end
 			$.ajax({
 			    type: "GET",
-			    url: "http://localhost:3000/sentences/1",
+			    url: "/sentences/new",
 			    dataType: "json",
 			    success: function(data) {			    	
 			      for(var j=0; j<data.content.length; j++){	
@@ -60,34 +60,21 @@ $(document).ready(function(){
   			$(this).text($(box).text());
             $(box).off();
             $( this ).off();
-            droppables++
-            if(droppables===5){
-            	$.ajax({
-				  type: "POST",
-				  url: "http://localhost:3000/sentences/",
-				  data: sentence_array,
-				  success: function(){
-				  	console.log("sent success");
-				  },
-				  dataType: "json"
-				});
-            }//end if in drop
-            else{
-            	            createDroppableObject();	 	 	 
-            			    createDrag(box);
-            }//end else in drop
+            droppables++;
+            createDroppableObject();	 	 	 
+        	createDrag(box);
           }
 
 
     	})
     
-  
+  		
   	} //make droppable end
 
   	// getting data from database
 	$.ajax({
 		    type: "GET",
-		    url: "http://localhost:3000/sentences/1",
+		    url: "/sentences/new",
 		    dataType: "json",
 		    success: function(data) {
 		      for(var j=0; j<data.content.length; j++){	       
@@ -97,6 +84,18 @@ $(document).ready(function(){
 		 
 	 });//ajax end
 
-
+	$('#new_sentence_submit').on('submit', function(){
+		console.log("yo")
+		// $.post('/sentences', {sentence: sentence_array})
+		        	$.ajax({
+				  type: "POST",
+				  url: "/sentences",
+				  data: {words: sentence_array},
+				  dataType: "json"
+				}).done(function (response) {
+				  	console.log("sent success");
+				  	console.log(response);
+				});
+	});
 
 });
