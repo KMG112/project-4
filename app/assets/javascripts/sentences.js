@@ -1,17 +1,46 @@
-
-$(document).ready(function(){
+var ready;
+ready = function(){
 	var sentence_array =[];
-	var droppables = 0;
+	var pathname = window.location.pathname; // Returns path only
+	
 	var createDroppableObject = function(){
   	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div>")
   	}//createDroppableObject end
-  	createDroppableObject();
+  	
+  		// getting data from database
+	var ajax = function(){
+		$.ajax({
+			    type: "GET",
+			    url: "/sentences/new",
+			    dataType: "json" 
+		 }).done(function(data) {
+			      for(var j=0; j<data.content.length; j++){	       
+			      	 $('#box'+j).text(data.content[j]);
+			      	};
+			    })//ajax.done end
+	}
+
+
+	$('#new_sentence').on('submit', function(event){
+		event.preventDefault();
+		console.log(this);
+		        $.ajax({
+				  type: "POST",
+				  url: "/sentences",
+				  data: {words: sentence_array},
+				}).done(function (response) {
+				  	console.log("sent success");
+				  	console.log(response);
+				});
+		window.location = '/sentences/'
+	});// new_sentence submit end
 
 
 	// creating draggable objects with for statement
 	// objects created will get value from the position they are in, 
 	// in the active record array
 	var createDrag = function(box){
+		console.log(sentence_array);
 		$('#words').remove();
 		$('body').append('<div id="words"></div>')
 			for(var i=0; i<5; i++){
@@ -27,20 +56,11 @@ $(document).ready(function(){
 		  		});
 		 	
 			}// for loop end
-			$.ajax({
-			    type: "GET",
-			    url: "/sentences/new",
-			    dataType: "json",
-			    success: function(data) {			    	
-			      for(var j=0; j<data.content.length; j++){	
-			      	 $('#box'+j).text(data.content[j]);    
-			      	 
-			      	};
-			    }//success end
-			 
-		 	});//ajax end
+			
+		ajax() 
+		 	
 	}//createDrag ends
-  	createDrag();
+  	
 	// function to make only selected item dropped into droppable div    
 	var makeDroppable = function(box){
 
@@ -60,42 +80,27 @@ $(document).ready(function(){
   			$(this).text($(box).text());
             $(box).off();
             $( this ).off();
-            droppables++;
             createDroppableObject();	 	 	 
         	createDrag(box);
-          }
+          } //drop end
 
-
-    	})
+    	}); //.droppable end
     
   		
   	} //make droppable end
 
-  	// getting data from database
-	$.ajax({
-		    type: "GET",
-		    url: "/sentences/new",
-		    dataType: "json",
-		    success: function(data) {
-		      for(var j=0; j<data.content.length; j++){	       
-		      	 $('#box'+j).text(data.content[j]);
-		      	};
-		    }
-		 
-	 });//ajax end
+  
 
-	$('#new_sentence_submit').on('submit', function(){
-		console.log("yo")
-		// $.post('/sentences', {sentence: sentence_array})
-		        	$.ajax({
-				  type: "POST",
-				  url: "/sentences",
-				  data: {words: sentence_array},
-				  dataType: "json"
-				}).done(function (response) {
-				  	console.log("sent success");
-				  	console.log(response);
-				});
-	});
+	if(pathname==='/sentences/new'){ // only renders on new page
+		createDroppableObject();// creates the bucket to drop word into
+		ajax();// fetches data from rails controller
+		createDrag(); // creates draggable words
+	};
+	
+	
 
-});
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
