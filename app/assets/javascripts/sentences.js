@@ -5,6 +5,7 @@ ready = function(){
 	
 	var createDroppableObject = function(){
   	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div>")
+  	
   	}//createDroppableObject end
   	
   		// getting data from database
@@ -54,7 +55,7 @@ ready = function(){
 		  		$('#box'+i).on('drag', function(){
 		  			makeDroppable(this);
 		  		});
-		 	
+		 	createSuffixDroppable($('#box'+i))
 			}// for loop end
 			
 		ajax() 
@@ -89,10 +90,26 @@ ready = function(){
   		
   	} //make droppable end
 
-  	$('#suffixes p').click(function(event){
 
-  		$('#droppable').text($(this).text())
-  	})
+  	$('#suffixes p').draggable({
+    	revert: "invalid",
+    	drag: function(){
+    		// console.log(this)
+    		$('#suffixes p').addClass("now");
+    	}
+    	});
+
+  	function createSuffixDroppable(box){
+  		box.droppable({
+  			accept: '#suffix',
+  			drop: function(event, ui){
+  				var current_text = $(this).text()
+  				$(this).text(current_text+$(ui.draggable[0]).text())
+  			}//end of drop:
+  		});//end suffix droppable
+
+	};// end of create suffixHolders
+
 
 	if(pathname==='/sentences/new'){ // only renders on new page
 		createDroppableObject();// creates the bucket to drop word into
@@ -101,7 +118,6 @@ ready = function(){
 	};
 	
 	
-
 
 };
 
