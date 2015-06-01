@@ -4,7 +4,7 @@ class SentencesController < ApplicationController
   # GET /sentences
   # GET /sentences.json
   def index
-    @sentences = Sentence.all
+    @sentences = Sentence.where(user_id: current_user.id)
   end
 
   # GET /sentences/1
@@ -35,20 +35,21 @@ class SentencesController < ApplicationController
       end
   end
 
-  # GET /sentences/1/edit
-  def edit
-  end
+
+
 
   # POST /sentences
   # POST /sentences.json
   def create
-    @sentence = Sentence.new(sentence_params)
 
+    @sentence = Sentence.new(sentence_params)
+    @sentence.words = params[:words]
+    @sentence.user_id = current_user.id
     respond_to do |format|
       if @sentence.save
-        binding.pry
         format.html { redirect_to @sentence, notice: 'Sentence was successfully created.' }
         format.json { render :show, status: :created, location: @sentence } 
+       
       else
         format.html { render :new }
         format.json { render json: @sentence.errors, status: :unprocessable_entity }
@@ -56,19 +57,7 @@ class SentencesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sentences/1
-  # PATCH/PUT /sentences/1.json
-  def update
-    respond_to do |format|
-      if @sentence.update(sentence_params)
-        format.html { redirect_to @sentence, notice: 'Sentence was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sentence }
-      else
-        format.html { render :edit }
-        format.json { render json: @sentence.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  
 
   # DELETE /sentences/1
   # DELETE /sentences/1.json
