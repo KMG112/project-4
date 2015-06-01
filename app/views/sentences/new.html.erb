@@ -1,6 +1,12 @@
 
 <h1>New Sentence</h1>
 
+<div id ="suffixes">
+	<% @suffixes.each do |x|%>
+		<p value=<%=x.content%>><%= x.content%></p>
+	<%end%>
+</div>
+
 
 <div id="sentence_parts">
 
