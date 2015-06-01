@@ -16,6 +16,7 @@ class SentencesController < ApplicationController
 
   # GET /sentences/new
   def new
+    @suffixes = Word.where(pos: "suffix")
     @sentence = Sentence.new
       i=0
       words = []
