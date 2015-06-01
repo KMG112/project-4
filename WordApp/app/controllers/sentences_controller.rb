@@ -12,11 +12,13 @@ class SentencesController < ApplicationController
   def show
       i=0
       words = []
+      pos_array = ["noun","noun","adjective","others","verb","verb"]
       while i<5
-        word = Word.getWord("noun")
+        word = Word.getWord(pos_array[i])
         words << word
         i+= 1
       end
+
       respond_to do |format|
           format.html
           format.json {
@@ -40,8 +42,6 @@ class SentencesController < ApplicationController
   # POST /sentences.json
   def create
     @sentence = Sentence.new(sentence_params)
-    @word = Word.first
-    binding.pry
     respond_to do |format|
       if @sentence.save
         format.html { redirect_to @sentence, notice: 'Sentence was successfully created.' }
