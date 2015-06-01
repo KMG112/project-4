@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
-
+	var sentence_array =[];
+	var droppables = 0;
 	var createDroppableObject = function(){
   	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div>")
   	}//createDroppableObject end
@@ -30,8 +31,7 @@ $(document).ready(function(){
 			    type: "GET",
 			    url: "http://localhost:3000/sentences/1",
 			    dataType: "json",
-			    success: function(data) {
-			    	console.log(data.content);
+			    success: function(data) {			    	
 			      for(var j=0; j<data.content.length; j++){	
 			      	 $('#box'+j).text(data.content[j]);    
 			      	 
@@ -55,13 +55,29 @@ $(document).ready(function(){
             	          });
             $(this).removeAttr('id');
   			$(this).attr('id', 'dropped');
-  			$(this).text($(box).text())
+  			sentence_array.push($(box).text());
+  			
+  			$(this).text($(box).text());
             $(box).off();
             $( this ).off();
-            createDroppableObject();	 	 	 
-		    createDrag(box);
+            droppables++
+            if(droppables===5){
+            	$.ajax({
+				  type: "POST",
+				  url: "http://localhost:3000/sentences/",
+				  data: sentence_array,
+				  success: function(){
+				  	console.log("sent success");
+				  },
+				  dataType: "json"
+				});
+            }//end if in drop
+            else{
+            	            createDroppableObject();	 	 	 
+            			    createDrag(box);
+            }//end else in drop
           }
-         
+
 
     	})
     
