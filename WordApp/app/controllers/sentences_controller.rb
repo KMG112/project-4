@@ -4,19 +4,28 @@ class SentencesController < ApplicationController
   # GET /sentences
   # GET /sentences.json
   def index
-    @sentences = Sentence.all
+    @sentences = Sentence.where(user_id: current_user.id)
   end
 
   # GET /sentences/1
   # GET /sentences/1.json
   def show
+      
+ 
+  end
+
+  # GET /sentences/new
+  def new
+    @sentence = Sentence.new
       i=0
       words = []
+      pos_array = ["noun","noun","adjective","others","verb","verb"]
       while i<5
-        word = Word.getWord("noun")
+        word = Word.getWord(pos_array[i])
         words << word
         i+= 1
       end
+
       respond_to do |format|
           format.html
           format.json {
@@ -24,28 +33,23 @@ class SentencesController < ApplicationController
           }
       
       end
- 
   end
 
-  # GET /sentences/new
-  def new
-    @sentence = Sentence.new
-  end
 
-  # GET /sentences/1/edit
-  def edit
-  end
+
 
   # POST /sentences
   # POST /sentences.json
   def create
+
     @sentence = Sentence.new(sentence_params)
-    @word = Word.first
-    binding.pry
+    @sentence.words = params[:words]
+    @sentence.user_id = current_user.id
     respond_to do |format|
       if @sentence.save
         format.html { redirect_to @sentence, notice: 'Sentence was successfully created.' }
         format.json { render :show, status: :created, location: @sentence } 
+       
       else
         format.html { render :new }
         format.json { render json: @sentence.errors, status: :unprocessable_entity }
@@ -53,19 +57,7 @@ class SentencesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sentences/1
-  # PATCH/PUT /sentences/1.json
-  def update
-    respond_to do |format|
-      if @sentence.update(sentence_params)
-        format.html { redirect_to @sentence, notice: 'Sentence was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sentence }
-      else
-        format.html { render :edit }
-        format.json { render json: @sentence.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  
 
   # DELETE /sentences/1
   # DELETE /sentences/1.json
