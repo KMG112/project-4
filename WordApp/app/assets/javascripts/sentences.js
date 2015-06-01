@@ -23,7 +23,7 @@ ready = function(){
 
 	$('#new_sentence').on('submit', function(event){
 		event.preventDefault();
-		console.log(this);
+
 		        $.ajax({
 				  type: "POST",
 				  url: "/sentences",
@@ -40,7 +40,7 @@ ready = function(){
 	// objects created will get value from the position they are in, 
 	// in the active record array
 	var createDrag = function(box){
-		console.log(sentence_array);
+
 		$('#words').remove();
 		$('body').append('<div id="words"></div>')
 			for(var i=0; i<5; i++){
