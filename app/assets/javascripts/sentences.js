@@ -80,12 +80,13 @@ ready = function(){
     	$('#droppable').droppable({
     		accept: box,
     		drop: function( event, ui ) {
-    	
+
             $( this ).addClass( "ui-state-highlight" );                 		
             $(box).position({
             	  of: $('#droppable'),
                   my: "center"      	  
             	          });
+
             renamingDroppableObjects(this)
   			wordTextTransfer(this, box);
             $(this).off();   //turns off droppability 
@@ -126,7 +127,7 @@ ready = function(){
 		createDrag(); // creates draggable words
 	};
 	
-	
+	TweenLite.to($("#box1"), 2, {css:{left: "600px"}});
 
 };
 
