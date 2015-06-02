@@ -1,11 +1,10 @@
 var ready;
 ready = function(){
 	var sentence_array =[];
-	var pathname = window.location.pathname; // Returns path only
+	var pathname = window.location.pathname; // Returns path 
 	
 	var createDroppableObject = function(){
   	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div>")
-  	
   	}//createDroppableObject end
   	
   		// getting data from database
@@ -19,12 +18,11 @@ ready = function(){
 			      	 $('#box'+j).text(data.content[j]);
 			      	};
 			    })//ajax.done end
-	}
+	}//ajax function end
 
 
 	$('#new_sentence').on('submit', function(event){
 		event.preventDefault();
-
 		        $.ajax({
 				  type: "POST",
 				  url: "/sentences",
@@ -47,7 +45,7 @@ ready = function(){
 			for(var i=0; i<5; i++){
 				$('#words').append("<div id=box"+i+" class='ui-widget-header'></div>");
 				
-	
+				
 				$('#box'+i).draggable({
 		  			revert: "invalid"
 		  		});
@@ -55,39 +53,49 @@ ready = function(){
 		  		$('#box'+i).on('drag', function(){
 		  			makeDroppable(this);
 		  		});
+		  	// animateIncomingWordBoxes('#box'+i)
 		 	createSuffixDroppable($('#box'+i))
 			}// for loop end
 			
 		ajax() 
 		 	
 	}//createDrag ends
+
+
+	var renamingDroppableObjects = function(currentBox){
+		$(currentBox).removeAttr('id');
+  		$(currentBox).attr('id', 'dropped');
+	}
+
+
+	var wordDropTextTransfer = function(droppableBox, wordBox){
+		sentence_array.push($(wordBox).text());
+  		var current_text = $(droppableBox).text()
+  		$(droppableBox).text($(wordBox).text()+current_text);
+	}
   	
 	// function to make only selected item dropped into droppable div    
 	var makeDroppable = function(box){
 
     	$('#droppable').droppable({
-
+    		accept: box,
     		drop: function( event, ui ) {
-    			
+    		animateDroppingWords();
             $( this ).addClass( "ui-state-highlight" );                 		
             $(box).position({
             	  of: $('#droppable'),
                   my: "center"      	  
             	          });
-            $(this).removeAttr('id');
-  			$(this).attr('id', 'dropped');
-  			sentence_array.push($(box).text());
-  			var current_text = $(this).text()
-  			$(this).text($(box).text()+current_text);
-            $(box).off();
-            $( this ).off();
-            createDroppableObject();	 	 	 
-        	createDrag(box);
+
+            renamingDroppableObjects(this)
+  			wordDropTextTransfer(this, box);
+            $(this).off();   //turns off droppability 
+            setTimeout(createDroppableObject, 500);
+  			setTimeout(createDrag, 500, box);	
           } //drop end
 
     	}); //.droppable end
     
-  		
   	} //make droppable end
 
 
@@ -105,6 +113,9 @@ ready = function(){
   			drop: function(event, ui){
   				var current_text = $(this).text()
   				$(this).text(current_text+$(ui.draggable[0]).text())
+  				$(ui.draggable[0]).text(" ")//makes suffix invisable to user
+  				
+
   			}//end of drop:
   		});//end suffix droppable
 
@@ -116,9 +127,15 @@ ready = function(){
 		ajax();// fetches data from rails controller
 		createDrag(); // creates draggable words
 	};
-	
-	
+	// function animateIncomingWordBoxes(box){
+	// 	var randRotation = Math.floor((Math.random()*500)+10);
+		
+	// 	TweenMax.from($(box), 1, {left: "600px", rotation:randRotation, delay: 1});
+	// } // end animateIncomingWordBoxes
 
+	animateDroppingWords = function(){
+		TweenMax.to($("#words"), .5, {y:500})
+	}// end animateDroppingWords
 };
 
 $(document).ready(ready);
