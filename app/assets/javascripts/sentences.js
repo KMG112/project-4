@@ -1,7 +1,7 @@
 var ready;
 ready = function(){
 	var sentence_array =[];
-	var pathname = window.location.pathname; // Returns path only
+	var pathname = window.location.pathname; // Returns path 
 	
 	var createDroppableObject = function(){
   	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div>")
@@ -19,12 +19,11 @@ ready = function(){
 			      	 $('#box'+j).text(data.content[j]);
 			      	};
 			    })//ajax.done end
-	}
+	}//ajax function end
 
 
 	$('#new_sentence').on('submit', function(event){
 		event.preventDefault();
-
 		        $.ajax({
 				  type: "POST",
 				  url: "/sentences",
@@ -61,26 +60,35 @@ ready = function(){
 		ajax() 
 		 	
 	}//createDrag ends
+
+
+	var renamingDroppableObjects = function(currentBox){
+		$(currentBox).removeAttr('id');
+  		$(currentBox).attr('id', 'dropped');
+	}
+
+
+	var wordTextTransfer = function(droppableBox, wordBox){
+		sentence_array.push($(wordBox).text());
+  		var current_text = $(droppableBox).text()
+  		$(droppableBox).text($(wordBox).text()+current_text);
+	}
   	
 	// function to make only selected item dropped into droppable div    
 	var makeDroppable = function(box){
 
     	$('#droppable').droppable({
-
+    		accept: box,
     		drop: function( event, ui ) {
-    			
+    	
             $( this ).addClass( "ui-state-highlight" );                 		
             $(box).position({
             	  of: $('#droppable'),
                   my: "center"      	  
             	          });
-            $(this).removeAttr('id');
-  			$(this).attr('id', 'dropped');
-  			sentence_array.push($(box).text());
-  			var current_text = $(this).text()
-  			$(this).text($(box).text()+current_text);
-            $(box).off();
-            $( this ).off();
+            renamingDroppableObjects(this)
+  			wordTextTransfer(this, box);
+            $(this).off();   //turns off droppability 
             createDroppableObject();	 	 	 
         	createDrag(box);
           } //drop end
@@ -105,6 +113,7 @@ ready = function(){
   			drop: function(event, ui){
   				var current_text = $(this).text()
   				$(this).text(current_text+$(ui.draggable[0]).text())
+  				$(ui.draggable[0]).text(" ")//makes suffix invisable to user
   			}//end of drop:
   		});//end suffix droppable
 

@@ -18,6 +18,7 @@ class SentencesController < ApplicationController
   def new
     @suffixes = Word.where(pos: "suffix")
     @sentence = Sentence.new
+
       i=0
       words = []
       pos_array = ["noun","noun","adjective","others","verb","verb"]
@@ -34,6 +35,7 @@ class SentencesController < ApplicationController
           }
       
       end
+
   end
 
 
@@ -42,7 +44,6 @@ class SentencesController < ApplicationController
   # POST /sentences
   # POST /sentences.json
   def create
-
     @sentence = Sentence.new(sentence_params)
     @sentence.words = params[:words]
     @sentence.user_id = current_user.id
