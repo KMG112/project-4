@@ -13,9 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery-ui
-//= require 'greensock/TweenLite'
-//= require 'greensock/easing/EasePack'
-//= require 'greensock/jquery.gsap.js'
+//= require jquery-ui/draggable
+//= require jquery-ui/droppable
+
 //= require_tree .
 
