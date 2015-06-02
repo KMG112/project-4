@@ -5,6 +5,7 @@ ready = function(){
 	
 	var createDroppableObject = function(){
   	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div>")
+  		
   	}//createDroppableObject end
   	
   		// getting data from database
@@ -74,15 +75,14 @@ ready = function(){
   		var current_text = $(droppableBox).text()
   		$(droppableBox).text($(wordBox).text()+current_text);
 	}
-  	
+  
 	// function to make only selected item dropped into droppable div    
 	var makeDroppable = function(box){
 
     	$('#droppable').droppable({
     		accept: box,
     		drop: function( event, ui ) {
-    		animateDroppingWords();
-            $( this ).addClass( "ui-state-highlight" );                 		
+    		animateDroppingWords();                		
             $(box).position({
             	  of: $('#droppable'),
                   my: "center"      	  
@@ -92,7 +92,8 @@ ready = function(){
   			wordDropTextTransfer(this, box);
             $(this).off();   //turns off droppability 
             setTimeout(createDroppableObject, 600);
-  			setTimeout(createDrag, 600, box);	
+  			setTimeout(createDrag, 600, box);
+
           } //drop end
 
     	}); //.droppable end
@@ -131,7 +132,7 @@ ready = function(){
 
 	function animateIncomingWordBoxes(box){
 		var randRotation = Math.floor((Math.random()*500)+10);		
-		TweenMax.from($(box), 1, {left: "600px", rotation:randRotation});
+		TweenMax.from($(box), 1, {left: "900px", rotation:randRotation});
 	} // end animateIncomingWordBoxes
 
 	animateDroppingWords = function(){
