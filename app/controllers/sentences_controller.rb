@@ -17,11 +17,12 @@ class SentencesController < ApplicationController
   # GET /sentences/new
   def new
     @suffixes = Word.where(pos: "suffix")
+    @interjection = Word.where(pos: "interjection")
     @sentence = Sentence.new
 
       i=0
       words = []
-      pos_array = ["noun","noun","adjective","others","verb","verb"]
+      pos_array = ["pronoun","noun","adjective","others","verb","verb"]
       while i<5
         word = Word.getWord(pos_array[i])
         words << word

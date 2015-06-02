@@ -1,6 +1,8 @@
 
 <h1>New Sentence</h1>
 
+
+
 <div id ="suffixes">
 	<% @suffixes.each do |x|%>
 		<p id="suffix"><%= x.content%></p>
@@ -19,9 +21,10 @@
 </div>
 
 
-
+<div id="subNav">
 
 <%= render 'form' %>
 
 
 <%= link_to 'Back', sentences_path %>
+</div>
