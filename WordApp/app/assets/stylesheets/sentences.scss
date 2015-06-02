@@ -16,13 +16,16 @@
   }
 
   #droppable{
+  position: relative;
  	width: 150px;
   height: 40px; 
   padding: 0.5em; 
   border: 3px solid red;
   display: inline-block;
   }
-
+#words{
+  width: 700px;
+}
 
 #dropped{
   width: 150px;
@@ -33,7 +36,7 @@
   }
 
 #suffixes{
-
+  
   width: 100px;
   float:right;
 }
