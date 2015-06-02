@@ -132,11 +132,12 @@ ready = function(){
 
 	function animateIncomingWordBoxes(box){
 		var randRotation = Math.floor((Math.random()*500)+10);		
-		TweenMax.from($(box), 1, {left: "900px", rotation:randRotation});
+		TweenMax.from($(box), 1, {left: "900px", rotation:randRotation, scale:3});
 	} // end animateIncomingWordBoxes
 
 	animateDroppingWords = function(){
 		TweenMax.staggerTo($("#words div"), .5, {y:500}, 0.1)
+		
 	}// end animateDroppingWords
 };
 

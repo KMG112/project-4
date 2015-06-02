@@ -7,7 +7,6 @@
 }
 
 #box0, #box1, #box2, #box3, #box4 {
-
   line-height: 35px;
   width: 150px;
   height: 40px; 
@@ -20,11 +19,12 @@
   }
 
 #droppable{
+  border: none;
   text-align: center;
- 	width: 200px;
+ 	width: 170px;
   height: 40px;
   padding: 0.5em; 
-  border: 3px solid red;
+
   display: inline-block;
   }
 
@@ -35,18 +35,20 @@
 }
 
 #sentence_parts div{
+  margin-right: 30px;
+  border-bottom: solid black 3px;
   text-align: center;
   background: transparent;
 }
 
 #dropped{
+border: none;
   line-height: 40px;
   text-align: center;
   vertical-align: top;
-  width: 200px;
+  width: 170px;
   height: 40px;
   padding: 0.5em; 
-  border: 3px solid red;
   display: inline-block;
   }
 
