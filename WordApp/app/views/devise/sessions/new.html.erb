@@ -2,7 +2,7 @@
   <h1>Welcome to WordApp<small>:the sentence creator</small></h1>
 </div>
 <div class="jumbotron">
-<div class="authform  container">
+<div class="authform container">
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
     <h3>Sign in</h3>
     <%flash.each do |x| %>
@@ -31,7 +31,7 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
     </div>
-      <%= f.submit 'Sign in', :class => 'btn btn-default btn-lg' %>
+      <%= f.submit 'Sign in', :class => 'btn btn-primary btn-lg' %>
       <% if devise_mapping.rememberable? -%>
         <div class="checkbox" style="width:150px">
           <label>

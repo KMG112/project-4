@@ -11,9 +11,14 @@
   z-index: 1;
 }
 
+#words_holder{
+  padding: 100px 0 100px 10px;
+}
+
 #box0, #box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9, #box10 {
+  margin-left: 10px;
   line-height: 35px;
-  width: 150px;
+  width: 130px;
   height: 40px; 
   text-align: center;
   border: 3px solid red;
@@ -35,12 +40,16 @@
 
 #subNav{
   position:absolute;
-  border:solid red 1px;
   margin-top: 100px;
 }
 
+
+#sentence_parts{
+  padding: 20px;
+}
+
 #sentence_parts div{
- 
+  margin: 100px 0 0 0;
   border-bottom: solid black 3px;
   text-align: center;
   background: transparent;
