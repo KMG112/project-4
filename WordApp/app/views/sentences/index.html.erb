@@ -3,11 +3,11 @@
 
 <div class="alert alert-success " role="alert">
         <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
-        <span class="sr-only">Success:</span><div style="display: inline-block">Welcome Back!!</div>
+        <span class="sr-only">Success:</span><div style="display: inline-block"><%=notice%></div>
         </div>
 <%end%>
 
-<%= link_to 'New Sentence', new_sentence_path, class: ' btn btn-default btn-block btn-lg', id: "new_sentence_button"%>
+<%= link_to 'New Sentence', new_sentence_path, class: ' btn btn-primary btn-block btn-lg', id: "new_sentence_button"%>
 
 <div class="panel panel-default">
   <div class="panel-heading"><h1>Your Sentences</h1></div>
