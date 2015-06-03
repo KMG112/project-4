@@ -4,7 +4,7 @@ ready = function(){
 	var pathname = window.location.pathname; // Returns path 
 	
 	var createDroppableObject = function(){
-  	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div></div><div id=puncDrop class='ui-widget-header'></div")
+  	  	$('#sentence_parts').append("<div id=droppable class='col-md-2'></div></div><div id=puncDrop class='col-sm-1'></div")
   		
   	}//createDroppableObject end
   	
@@ -31,6 +31,7 @@ ready = function(){
 		}).done(function (response) {
   			window.location = '/sentences'
 		});
+		
 	});// new_sentence submit end
 
 
@@ -43,7 +44,7 @@ ready = function(){
 
 		$('#words_holder').append('<div id="words"></div>')
 			for(var i=0; i<10; i++){
-				$('#words').append("<div id=box"+i+" class='ui-widget-header'>");
+				$('#words').append("<div id=box"+i+" class='col-md-2'>");
 				
 				
 				$('#box'+i).draggable({
