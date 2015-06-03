@@ -28,3 +28,12 @@
 
 <%= link_to 'Back', sentences_path %>
 </div>
+
+
+<div id ="punctuation">
+	<% @punctuation.each_with_index do |x, i|%>
+		<p id="punc<%=i%>" class='ui-widget-header'><%= x.content%></p>
+	<%end%>
+</div>
+
+
