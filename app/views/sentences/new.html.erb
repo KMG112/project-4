@@ -1,37 +1,41 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="span2">
+      <div id ="punctuation">
+		<% @punctuation.each_with_index do |x, i|%>
+			<p id="punc<%=i%>" class='ui-widget-header'><%= x.content%></p>
+	 	<%end%>
+	  </div>
 
-<h1>New Sentence</h1>
+		<div id ="suffixes">
+			<% @suffixes.each do |x|%>
+				<p id="suffix"><%= x.content%></p>
+			<%end%>
+    	</div>
+    </div>
+  
 
-<div id ="suffixes">
-	<% @suffixes.each do |x|%>
-		<p id="suffix"><%= x.content%></p>
-	<%end%>
+  <div class="span8">
+
+    <div id="sentence_parts" class="col-md-4">
+	</div>
+
+	 <div id="words_holder" class="container">
+	 	<div id="words" >
+	 	</div>
+	 </div>
+
+    <div id="subNav">
+		<%= render 'form' %>
+		<%= link_to 'Back', sentences_path %>
+	</div>
+  </div>
 </div>
 
 
-<div id="sentence_parts">
 
 
-</div>
-
-<div id="words">
 
 
-</div>
-
-
-<div id="subNav">
-
-<%= render 'form' %>
-
-
-<%= link_to 'Back', sentences_path %>
-</div>
-
-
-<div id ="punctuation">
-	<% @punctuation.each_with_index do |x, i|%>
-		<p id="punc<%=i%>" class='ui-widget-header'><%= x.content%></p>
-	<%end%>
-</div>
 
 
