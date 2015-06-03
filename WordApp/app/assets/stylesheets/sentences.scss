@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
 #new_sentence_button{
   margin: 20px 0 20px 0;
 }
@@ -38,10 +40,7 @@
   display: inline-block;
   }
 
-#subNav{
-  position:absolute;
-  margin-top: 100px;
-}
+
 
 
 #sentence_parts{
@@ -68,13 +67,13 @@ border: none;
 
 #suffixes{
   width: 100px;
-
 }
 
 #suffixes p{
   z-index: 2;
   width: 40px;
   display: inline-block;
+  padding: 5px;
 
 }
 
@@ -83,7 +82,7 @@ border: none;
   text-align:center;
   width: 200px;
   border: 1px solid blue;
-   margin-top: 100px;
+   margin-top: 20px;
 }
 #punctuation p{
   height: 30px;
