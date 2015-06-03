@@ -29,7 +29,7 @@ ready = function(){
 		  url: "/sentences",
 		  data: {words: sentence_array},
 		}).done(function (response) {
-  			window.location = '/sentences/'
+  			window.location = '/sentences'
 		});
 	});// new_sentence submit end
 
