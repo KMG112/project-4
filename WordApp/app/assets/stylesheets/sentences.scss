@@ -6,8 +6,7 @@
   z-index: 1;
 }
 
-#box0, #box1, #box2, #box3, #box4 {
-
+#box0, #box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9, #box10 {
   line-height: 35px;
   width: 150px;
   height: 40px; 
@@ -20,11 +19,12 @@
   }
 
 #droppable{
+  border: none;
   text-align: center;
- 	width: 200px;
+ 	width: 170px;
   height: 40px;
   padding: 0.5em; 
-  border: 3px solid red;
+
   display: inline-block;
   }
 
@@ -35,18 +35,20 @@
 }
 
 #sentence_parts div{
+ 
+  border-bottom: solid black 3px;
   text-align: center;
   background: transparent;
 }
 
 #dropped{
+border: none;
   line-height: 40px;
   text-align: center;
   vertical-align: top;
-  width: 200px;
+  width: 170px;
   height: 40px;
   padding: 0.5em; 
-  border: 3px solid red;
   display: inline-block;
   }
 
@@ -61,3 +63,52 @@
   display: inline-block;
   float:right;
 }
+
+
+#punctuation{
+  text-align:center;
+  width: 200px;
+  border: 1px solid blue;
+   margin-top: 100px;
+}
+#punctuation p{
+  height: 30px;
+  border: 1px solid blue;
+  width: 15px;
+  display: inline-block;
+ 
+}
+#puncDrop{
+  line-height: 20px;
+  vertical-align: top;
+  border: 1px solid blue;
+  width: 20px;
+  height: 40px;
+  display: inline-block;
+ 
+}
+
+#puncDropped{
+  line-height: 20px;
+  vertical-align: top;
+  border: 1px solid blue;
+  width: 20px;
+  height: 40px;
+  display: inline-block;
+ 
+}
+
+#interjection{
+  text-align:center;
+  width: 200px;
+  border: 1px solid green;
+   margin-top: 100px;
+}
+#interjection p{
+  border: 1px solid green;
+  width: 20px;
+  height: 30px;
+  display: inline-block;
+ 
+}
+

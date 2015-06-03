@@ -17,18 +17,20 @@ class SentencesController < ApplicationController
   # GET /sentences/new
   def new
     @suffixes = Word.where(pos: "suffix")
-    @interjection = Word.where(pos: "interjection")
+    @interjection1 = Word.getWord("interjection")
+    @interjection2 = Word.getWord("interjection")
+    @punctuation = Word.where(pos: "punctuation")
     @sentence = Sentence.new
 
       i=0
       words = []
-      pos_array = ["pronoun","noun","adjective","others","verb","verb"]
-      while i<5
+      pos_array = ["pronoun","pronoun","noun","noun","adjective","adjective","others","verb","verb","interjection"]
+
+      while i<10# tried to put in model but didnt work
         word = Word.getWord(pos_array[i])
         words << word
         i+= 1
       end
-
       respond_to do |format|
           format.html
           format.json {

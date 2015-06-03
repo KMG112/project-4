@@ -13,7 +13,7 @@
     <% @sentences.each do |sentence| %>
       <tr>
        <% if sentence.words%>
-         <% sentence.words.append(".")%>
+         
          <% sentence.words[0].capitalize! %> 
          <td><h2><%= sentence.words.join(" ")%></h2></td>
         <%end%>
