@@ -4,7 +4,7 @@ ready = function(){
 	var pathname = window.location.pathname; // Returns path 
 	
 	var createDroppableObject = function(){
-  	  	$('#sentence_parts').append("<div id=droppable class='col-md-2'></div></div><div id=puncDrop class='col-sm-1'></div")
+  	  	$('#sentence_parts').append("<div id=droppable class='col-md-2'></div></div><div id=puncDrop class='col-md-1'></div")
   		
   	}//createDroppableObject end
   	
@@ -130,7 +130,6 @@ ready = function(){
 	  	box.draggable({
 	    	revert: "invalid",
 	    	drag: function(){
-	    		// console.log(this)
 	    	}
 	    	});//end punctuation draggable
 	  }// end create Punctuation Drag
@@ -140,19 +139,19 @@ ready = function(){
 	  		var current_punc_drop = $('#sentence_parts #puncDrop');
 	  		current_punc_drop.droppable({
 	  		  		accept: box,
-	  	 			drop: function(event, ui){	  	
+	  	 			drop: function(event, ui){	 	
 	 				var current_text = $(this).text()
+	 				sentence_array.push($(ui.draggable[0]).text())
 	   				$(this).text(current_text+$(ui.draggable[0]).text())
 	   				$(ui.draggable[0]).remove()//makes punctuation box invisable to user
 	   				$('#puncDrop').attr('id', 'puncDropped')
-	  	
+	  				
 	  		  		}//end of drop:
 	  		});//end punctuation droppable
 	  
 	};// end of createPunctuationHolders
 
 	for(var k=0; k<8; k++){
-		// console.log($('#punc'+k))
 		createPunctuationDrag($('#punc'+k))
 
 		$('#punc'+k).on('drag', function(){
