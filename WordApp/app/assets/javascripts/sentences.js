@@ -5,6 +5,7 @@ ready = function(){
 	
 	var createDroppableObject = function(){
   	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div>")
+  		
   	}//createDroppableObject end
   	
   		// getting data from database
@@ -41,6 +42,7 @@ ready = function(){
 	var createDrag = function(box){
 
 		$('#words').remove();
+
 		$('body').append('<div id="words"></div>')
 			for(var i=0; i<5; i++){
 				$('#words').append("<div id=box"+i+" class='ui-widget-header'></div>");
@@ -53,11 +55,11 @@ ready = function(){
 		  		$('#box'+i).on('drag', function(){
 		  			makeDroppable(this);
 		  		});
-		  	// animateIncomingWordBoxes('#box'+i)
+		  	animateIncomingWordBoxes($('#box'+i))
 		 	createSuffixDroppable($('#box'+i))
 			}// for loop end
 			
-		ajax() 
+		ajax(); 
 		 	
 	}//createDrag ends
 
@@ -73,15 +75,14 @@ ready = function(){
   		var current_text = $(droppableBox).text()
   		$(droppableBox).text($(wordBox).text()+current_text);
 	}
-  	
+  
 	// function to make only selected item dropped into droppable div    
 	var makeDroppable = function(box){
 
     	$('#droppable').droppable({
     		accept: box,
     		drop: function( event, ui ) {
-    		animateDroppingWords();
-            $( this ).addClass( "ui-state-highlight" );                 		
+    		animateDroppingWords();                		
             $(box).position({
             	  of: $('#droppable'),
                   my: "center"      	  
@@ -90,8 +91,9 @@ ready = function(){
             renamingDroppableObjects(this)
   			wordDropTextTransfer(this, box);
             $(this).off();   //turns off droppability 
-            setTimeout(createDroppableObject, 500);
-  			setTimeout(createDrag, 500, box);	
+            setTimeout(createDroppableObject, 600);
+  			setTimeout(createDrag, 600, box);
+
           } //drop end
 
     	}); //.droppable end
@@ -127,14 +129,14 @@ ready = function(){
 		ajax();// fetches data from rails controller
 		createDrag(); // creates draggable words
 	};
-	// function animateIncomingWordBoxes(box){
-	// 	var randRotation = Math.floor((Math.random()*500)+10);
-		
-	// 	TweenMax.from($(box), 1, {left: "600px", rotation:randRotation, delay: 1});
-	// } // end animateIncomingWordBoxes
+
+	function animateIncomingWordBoxes(box){
+		var randRotation = Math.floor((Math.random()*500)+10);		
+		TweenMax.from($(box), 1, {left: "900px", rotation:randRotation});
+	} // end animateIncomingWordBoxes
 
 	animateDroppingWords = function(){
-		TweenMax.to($("#words"), .5, {y:500})
+		TweenMax.staggerTo($("#words div"), .5, {y:500}, 0.1)
 	}// end animateDroppingWords
 };
 

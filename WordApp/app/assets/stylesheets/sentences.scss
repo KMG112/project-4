@@ -2,12 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#words{
+  z-index: 1;
+}
 
 #box0, #box1, #box2, #box3, #box4 {
 
-  width: 130px;
-  height: 30px; 
-  padding: 0.5em; 
+  line-height: 35px;
+  width: 150px;
+  height: 40px; 
+  text-align: center;
   border: 3px solid red;
   display: inline-block;
   &:hover{
@@ -15,33 +19,44 @@
   	}
   }
 
-  #droppable{
-  position: relative;
- 	width: 150px;
-  height: 40px; 
+#droppable{
+  text-align: center;
+ 	width: 200px;
+  height: 40px;
   padding: 0.5em; 
   border: 3px solid red;
   display: inline-block;
   }
-#words{
-  width: 700px;
+
+#subNav{
+  position:absolute;
+  border:solid red 1px;
+  margin-top: 100px;
+}
+
+#sentence_parts div{
+  text-align: center;
+  background: transparent;
 }
 
 #dropped{
-  width: 150px;
-  height: 40px; 
+  line-height: 40px;
+  text-align: center;
+  vertical-align: top;
+  width: 200px;
+  height: 40px;
   padding: 0.5em; 
   border: 3px solid red;
   display: inline-block;
   }
 
 #suffixes{
-  
   width: 100px;
   float:right;
 }
-#suffixes p{
 
+#suffixes p{
+  z-index: 2;
   width: 40px;
   display: inline-block;
   float:right;
