@@ -4,7 +4,7 @@ ready = function(){
 	var pathname = window.location.pathname; // Returns path 
 	
 	var createDroppableObject = function(){
-  	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div>")
+  	  	$('#sentence_parts').append("<div id=droppable class='ui-widget-header'></div></div><div id=puncDrop class='ui-widget-header'></div")
   		
   	}//createDroppableObject end
   	
@@ -44,8 +44,8 @@ ready = function(){
 		$('#words').remove();
 
 		$('body').append('<div id="words"></div>')
-			for(var i=0; i<5; i++){
-				$('#words').append("<div id=box"+i+" class='ui-widget-header'></div>");
+			for(var i=0; i<10; i++){
+				$('#words').append("<div id=box"+i+" class='ui-widget-header'>");
 				
 				
 				$('#box'+i).draggable({
@@ -80,7 +80,9 @@ ready = function(){
 	var makeDroppable = function(box){
 
     	$('#droppable').droppable({
+    	
     		accept: box,
+
     		drop: function( event, ui ) {
     		animateDroppingWords();                		
             $(box).position({
@@ -104,11 +106,13 @@ ready = function(){
   	$('#suffixes p').draggable({
     	revert: "invalid",
     	drag: function(){
-    		// console.log(this)
+
     		$('#suffixes p').addClass("now");
     	}
     	});
+ 
 
+  	// };
   	function createSuffixDroppable(box){
   		box.droppable({
   			accept: '#suffix',
@@ -117,11 +121,46 @@ ready = function(){
   				$(this).text(current_text+$(ui.draggable[0]).text())
   				$(ui.draggable[0]).text(" ")//makes suffix invisable to user
   				
-
   			}//end of drop:
   		});//end suffix droppable
 
 	};// end of create suffixHolders
+
+
+	function createPunctuationDrag(box){  	
+	  	box.draggable({
+	    	revert: "invalid",
+	    	drag: function(){
+	    		// console.log(this)
+	    	}
+	    	});//end punctuation draggable
+	  }// end create Punctuation Drag
+
+
+  	function createPunctuationDroppable(box){
+	  		var current_punc_drop = $('#sentence_parts #puncDrop');
+	  		current_punc_drop.droppable({
+	  		  		accept: box,
+	  	 			drop: function(event, ui){	  	
+	 				var current_text = $(this).text()
+	   				$(this).text(current_text+$(ui.draggable[0]).text())
+	   				$(ui.draggable[0]).remove()//makes punctuation box invisable to user
+	   				$('#puncDrop').attr('id', 'puncDropped')
+	  	
+	  		  		}//end of drop:
+	  		});//end punctuation droppable
+	  
+	};// end of createPunctuationHolders
+
+	for(var k=0; k<8; k++){
+		// console.log($('#punc'+k))
+		createPunctuationDrag($('#punc'+k))
+
+		$('#punc'+k).on('drag', function(){
+		  	createPunctuationDroppable(this);
+		  		});
+	}//end createpunctuationDroppable for loop
+
 
 
 	if(pathname==='/sentences/new'){ // only renders on new page
@@ -136,8 +175,7 @@ ready = function(){
 	} // end animateIncomingWordBoxes
 
 	animateDroppingWords = function(){
-		TweenMax.staggerTo($("#words div"), .5, {y:500}, 0.1)
-		
+		TweenMax.staggerTo($("#words div"), .5, {y:1000}, 0.01)
 	}// end animateDroppingWords
 };
 

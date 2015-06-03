@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'devise'
 gem 'better_errors'
-gem 'bootstrap-sass'
+gem 'twitter-bootstrap-rails'
 gem 'rails_layout'
 gem 'fileutils', '~> 0.7'
 # Use jquery as the JavaScript library
