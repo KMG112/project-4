@@ -29,7 +29,8 @@ ready = function(){
 		  url: "/sentences",
 		  data: {words: sentence_array},
 		}).done(function (response) {
-  			window.location = '/sentences'
+			TweenMax.fromTo($('#sentence_parts'), 1,{autoAlpha: 0, backgroundColor: 'skyblue'}, {autoAlpha: .97, scale: 1.2, right: '600px', borderRadius: '10px'})
+  			$('body').on('click', function(){window.location = '/sentences'});
 		});
 		
 	});// new_sentence submit end
@@ -167,6 +168,15 @@ ready = function(){
 		createDrag(); // creates draggable words
 	};
 
+
+	if(pathname==='/'){
+		TweenMax.from($('#welcome'),1, {left: "900px", position: 'relative', ease:Bounce.easeOut, width: "200px"})
+		setTimeout(TweenMax.to($('#welcome'),1,{scale: 8}), 1500)
+		$('body').on('click', function(){
+			TweenMax.to($('#welcome'), 2, {right: "9000px", position: 'relative', ease:Bounce.easeOut})
+			setTimeout(function(){window.location = '/sentences'}, 500)
+		});
+	}
 	function animateIncomingWordBoxes(box){
 		var randRotation = Math.floor((Math.random()*500)+10);		
 		TweenMax.from($(box), 1, {left: "900px", rotation:randRotation, scale:3});
