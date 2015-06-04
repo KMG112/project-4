@@ -1,29 +1,37 @@
-// Place all the styles related to the Sentences controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";  
 
-
+#body {
+  font-family: 'Gloria Hallelujah', cursive;
+  background-color: #457CA1;
+}
 
 #new_sentence_button{
   margin: 20px 0 20px 0;
 }
 
+#game{
+    background-color: #457CA1;
+
+}
 
 #words{
   z-index: 1;
 }
 
 #words_holder{
+  background-color: #FFD87F;
   padding: 100px 0 100px 10px;
 }
 
 #box0, #box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9, #box10 {
+ background-color: #FFD066;
   margin-left: 10px;
   line-height: 35px;
   width: 130px;
   height: 40px; 
   text-align: center;
-  border: 3px solid red;
+  border: 3px solid #B28724;
   display: inline-block;
   &:hover{
   		box-shadow: 10px 10px 20px blue;
@@ -44,6 +52,7 @@
 
 
 #sentence_parts{
+background-color: #FFD87F;
   padding: 20px;
 }
 
@@ -66,10 +75,13 @@
   }
 
 #suffixes{
+
   width: 100px;
 }
 
 #suffixes p{
+  text-align:center;
+  background-color: #EEC07E;
   z-index: 2;
   width: 40px;
   display: inline-block;
@@ -85,6 +97,7 @@
    margin-top: 20px;
 }
 #punctuation p{
+z-index: 3;
   height: 30px;
   border: 1px solid blue;
   width: 15px;
@@ -125,3 +138,77 @@
  
 }
 
+.btn{
+  background-color: #7EC0EE;
+}
+
+
+.panel{
+      background-color: #FFD87F;
+      
+}
+
+.panelpanel-default.panel-heading{
+       background-color: #FFD87F;
+      }
+
+
+.navbar-default {
+  background-color: #7ec0ee;
+  border-color: #7ec0ee;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #7ec0ee;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #7ec0ee;
+}
+.navbar-default .navbar-toggle {
+  border-color: #7ec0ee;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #7ec0ee;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #7ec0ee;
+  }
+}
