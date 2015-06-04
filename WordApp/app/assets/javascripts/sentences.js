@@ -29,6 +29,7 @@ ready = function(){
 		  url: "/sentences",
 		  data: {words: sentence_array},
 		}).done(function (response) {
+			$('#sentence_parts div').css({"boxShadow": "none", 'border': 'none'})
 			TweenMax.fromTo($('#sentence_parts'), 1,{autoAlpha: 0, backgroundColor: 'skyblue'}, {autoAlpha: .97, scale: 1.2, right: '600px', borderRadius: '10px'})
   			$('body').on('click', function(){window.location = '/sentences'});
 		});
