@@ -2,13 +2,14 @@
   <div class="row" >
       
 	  <div id ="punctuation" class="col-md-1">
+	  	<h3>Punctuation</h3>
 		<% @punctuation.each_with_index do |x, i|%>
 			<p id="punc<%=i%>" class='ui-widget-header'><%= x.content%></p>
 	 	<%end%>
 
 	</div>
 
-	 <div class="col-md-9" style="border:1px solid black">
+	 <div class="col-md-9" id="board">
 
  		<div id="sentence_parts" class="row">
 		</div>
@@ -22,10 +23,9 @@
 
 
 
-	<div class="col-md-1 col-sm-2" style="border:1px solid black">
-
-
+	<div class="col-md-1 col-sm-2" >
 	  <div id ="suffixes">
+	  	<h3>Suffixes</h3>
 		<% @suffixes.each do |x|%>
 			<p id="suffix"><%= x.content%></p>
 		<%end%>
