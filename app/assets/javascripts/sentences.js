@@ -29,8 +29,8 @@ ready = function(){
 		  url: "/sentences",
 		  data: {words: sentence_array},
 		}).done(function (response) {
-			$('#sentence_parts div').css({"boxShadow": "none", 'border': 'none'})
-			TweenMax.fromTo($('#sentence_parts'), 1,{autoAlpha: 0, backgroundColor: 'skyblue'}, {autoAlpha: .97, scale: 1.2, right: '600px', borderRadius: '10px'})
+			$('#sentence_parts div').css({"boxShadow": "none"})
+			TweenMax.fromTo($('#sentence_parts'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF'}, {autoAlpha: .97, scale: 1.2, right: '600px',y: '50px'})
   			$('body').on('click', function(){window.location = '/sentences'});
 		});
 		
@@ -171,6 +171,7 @@ ready = function(){
 
 
 	if(pathname==='/'){
+		TweenMax.from($('#welcome h1'), 1, {rotation: 360})
 		TweenMax.from($('#welcome'),1, {left: "900px", position: 'relative', ease:Bounce.easeOut, width: "200px"})
 		setTimeout(TweenMax.to($('#welcome'),1,{scale: 8}), 1500)
 		$('body').on('click', function(){
