@@ -18,9 +18,7 @@
   box-shadow: 0 10px 10px black;
 
 }
-#words{
-  z-index: 1;
-}
+
 
 #words_holder{
   background-color: #FFD87F;
@@ -86,6 +84,7 @@
 }
 
 #suffixes p{
+box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
   border-radius: 10px;
   margin-left: 5px;
   text-align:center;
@@ -95,7 +94,7 @@
   display: inline-block;
   padding: 5px;
   &:hover{
-    box-shadow: 10px 10px 20px #003354;
+    box-shadow: 10px 10px 20px #003354, -3px -2px 7px black inset;
   }
 
 }
@@ -107,14 +106,16 @@
    margin-top: 20px;
 }
 #punctuation p{
-  line-height: .9;
+  box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
+  border: none;
+  line-height: 1;
   border-radius: 90px;
   z-index: 3;
   height: 20px;
   width: 20px;
   display: inline-block;
   &:hover{
-    box-shadow: 10px 10px 20px #003354;
+    box-shadow: 10px 10px 20px #003354, -3px -2px 7px black inset;
   }
 }
 #puncDrop{
@@ -222,5 +223,9 @@
     background-color: #7ec0ee;
   }
 }
-
-
+.biggah{
+  box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
+  padding:200px;
+  text-align: center;
+  font-size: 40px;
+}

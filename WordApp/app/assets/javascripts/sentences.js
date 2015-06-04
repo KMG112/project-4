@@ -4,7 +4,7 @@ ready = function(){
 	var pathname = window.location.pathname; // Returns path 
 	
 	var createDroppableObject = function(){
-  	  	$('#sentence_parts').append("<div id=droppable class='col-md-2'></div></div><div id=puncDrop class='col-md-1'></div")
+  	  	$('#sentence_parts').append("<div id=droppable class='col-md-2'></div><div id=puncDrop class='col-md-1'></div")
   		
   	}//createDroppableObject end
   	
@@ -23,14 +23,14 @@ ready = function(){
 
 
 	$('#new_sentence').on('submit', function(event){
+		$(body).append("<div class='biggah'>"+sentence_array.join(" ")+"</div>")
 		event.preventDefault();
         $.ajax({
 		  type: "POST",
 		  url: "/sentences",
 		  data: {words: sentence_array},
 		}).done(function (response) {
-			$('#sentence_parts div').css({"boxShadow": "none"})
-			TweenMax.fromTo($('#sentence_parts'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF'}, {autoAlpha: .97, scale: 1.2, right: '600px',y: '50px'})
+			TweenMax.fromTo($('.biggah'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF', width: '1100px', height: '300px', x: '350px',y: '-500', boxShadow: '2px 4px 10px black, -3px -2px 7px black inset'}, {autoAlpha: .97, scale: 1.2, borderRadius: '10px', boxShadow: '10px 10px 40px black, -3px -2px 7px black inset'})
   			$('body').on('click', function(){window.location = '/sentences'});
 		});
 		
@@ -140,6 +140,7 @@ ready = function(){
 	  		current_punc_drop.droppable({
 	  		  		accept: box,
 	  	 			drop: function(event, ui){	
+	  	 				console.log(box)
 	 				sentence_array.push($(ui.draggable[0]).text())
 	   				current_punc_drop.text($(ui.draggable[0]).text())
 	   				$(ui.draggable[0]).remove()//makes punctuation box invisable to user
@@ -177,6 +178,8 @@ ready = function(){
 		});
 	}
 	function animateIncomingWordBoxes(box){
+// 		$('.audio').html(
+// "<embed src='"+'../public/SF.mp3'+"' hidden=true autostart=true loop=false>");
 		var randRotation = Math.floor((Math.random()*500)+10);		
 		TweenMax.from($(box), 1, {left: "900px", rotation:randRotation, scale:3});
 	} // end animateIncomingWordBoxes
