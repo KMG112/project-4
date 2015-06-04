@@ -36,7 +36,7 @@
  	width: 170px;
   height: 40px;
   padding: 0.5em; 
-
+  box-shadow: 0 0 100px 10px yellow, 1px 1px 60px 3px yellow inset ;
   display: inline-block;
   }
 
@@ -48,14 +48,14 @@
 }
 
 #sentence_parts div{
-  margin: 100px 0 0 0;
-  border-bottom: solid black 3px;
+  margin: 100px 5px 0  0;
+  border-bottom: solid black 1px;
   text-align: center;
   background: transparent;
 }
 
 #dropped{
-border: none;
+  border: none;
   line-height: 40px;
   text-align: center;
   vertical-align: top;
