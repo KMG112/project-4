@@ -107,8 +107,6 @@ ready = function(){
   	$('#suffixes p').draggable({
     	revert: "invalid",
     	drag: function(){
-
-    		$('#suffixes p').addClass("now");
     	}
     	});
  
@@ -120,7 +118,7 @@ ready = function(){
   			drop: function(event, ui){
   				var current_text = $(this).text()
   				$(this).text(current_text+$(ui.draggable[0]).text())
-  				$(ui.draggable[0]).text(" ")//makes suffix invisable to user
+  				$(ui.draggable[0]).remove()//makes suffix invisable to user
   				
   			}//end of drop:
   		});//end suffix droppable
@@ -141,10 +139,9 @@ ready = function(){
 	  		var current_punc_drop = $('#sentence_parts #puncDrop');
 	  		current_punc_drop.droppable({
 	  		  		accept: box,
-	  	 			drop: function(event, ui){	 	
-	 				var current_text = $(this).text()
+	  	 			drop: function(event, ui){	
 	 				sentence_array.push($(ui.draggable[0]).text())
-	   				$(this).text(current_text+$(ui.draggable[0]).text())
+	   				current_punc_drop.text($(ui.draggable[0]).text())
 	   				$(ui.draggable[0]).remove()//makes punctuation box invisable to user
 	   				$('#puncDrop').attr('id', 'puncDropped')
 	  				
