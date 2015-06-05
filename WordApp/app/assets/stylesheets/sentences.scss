@@ -18,7 +18,11 @@
   box-shadow: 0 10px 10px black;
 
 }
-
+.biggah{
+  padding:200px;
+  text-align: center;
+  font-size: 40px;
+}
 
 #words_holder{
   background-color: #FFD87F;
@@ -118,15 +122,18 @@ box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
     box-shadow: 10px 10px 20px #003354, -3px -2px 7px black inset;
   }
 }
-#puncDrop{
-  border-radius: 110px;
-  margin-top: 117px;
-  padding-top: 10px;
-  width: 20px;
-  height: 30px;
-  display: inline-block;
-  background: #486E88;
-  opacity: .4;
+
+
+@for $i from 0 through 99{
+  #puncDrop#{$i}{
+      border-radius: 110px;
+      margin-top: 117px;
+      padding-top: 10px;
+      width: 20px;
+      height: 30px;
+      display: inline-block;
+      background: #486E88;
+      opacity: .4;}
 }
 
 #puncDropped{
@@ -222,10 +229,4 @@ box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
     color: #ffffff;
     background-color: #7ec0ee;
   }
-}
-.biggah{
-  box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
-  padding:200px;
-  text-align: center;
-  font-size: 40px;
 }
