@@ -28,8 +28,8 @@
   background-color: #FFD87F;
   padding: 100px 0 100px 10px;
 }
-
-#box0, #box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9, #box10 {
+@for $i from 0 through 10{
+  #box#{$i}{
   background-color: #FFD066;
   margin-left: 10px;
   line-height: 35px;
@@ -42,8 +42,8 @@
   &:hover{
   		box-shadow: 10px 10px 20px darken(#B28724, 10%);
   	}
-
   }
+}
 
 #droppable{
   margin: 100px 5px 0 0;
@@ -124,6 +124,7 @@ box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
 }
 
 
+
 @for $i from 0 through 99{
   #puncDrop#{$i}{
       border-radius: 110px;
@@ -132,8 +133,10 @@ box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
       width: 20px;
       height: 30px;
       display: inline-block;
-      background: #486E88;
-      opacity: .4;}
+       background-color: #c0c0c0;
+       opacity: .8;
+      box-shadow:0 0 25px 3px #c0c0c0 ;
+    }
 }
 
 #puncDropped{
