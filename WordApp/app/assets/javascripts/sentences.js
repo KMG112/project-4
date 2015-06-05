@@ -2,10 +2,11 @@ var ready;
 ready = function(){
 	var sentence_array =[];
 	var pathname = window.location.pathname; // Returns path 
-	
+	var counter =0;
 	var createDroppableObject = function(){
-  	  	$('#sentence_parts').append("<div id=droppable class='col-md-2'></div></div><div id=puncDrop class='col-md-1'></div")
-  		
+		
+  	  	$('#sentence_parts').append("<div id=droppable class='col-md-2'></div><div id=puncDrop"+counter+" class='puncSelector col-md-1'></div")
+  		counter ++
   	}//createDroppableObject end
   	
   		// getting data from database
@@ -23,14 +24,14 @@ ready = function(){
 
 
 	$('#new_sentence').on('submit', function(event){
+		$(body).append("<div class='biggah'>"+sentence_array.join(" ")+"</div>")
 		event.preventDefault();
         $.ajax({
 		  type: "POST",
 		  url: "/sentences",
 		  data: {words: sentence_array},
 		}).done(function (response) {
-			$('#sentence_parts div').css({"boxShadow": "none"})
-			TweenMax.fromTo($('#sentence_parts'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF'}, {autoAlpha: .97, scale: 1.2, right: '600px',y: '50px'})
+			TweenMax.fromTo($('.biggah'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF', width: '1100px', height: '300px', x: '350px',y: '-500', boxShadow: '2px 4px 10px black, -3px -2px 7px black inset'}, {autoAlpha: .97, scale: 1.2, borderRadius: '10px', boxShadow: '10px 10px 40px black, -3px -2px 7px black inset'})
   			$('body').on('click', function(){window.location = '/sentences'});
 		});
 		
@@ -107,8 +108,6 @@ ready = function(){
   	$('#suffixes p').draggable({
     	revert: "invalid",
     	drag: function(){
-
-    		$('#suffixes p').addClass("now");
     	}
     	});
  
@@ -120,7 +119,7 @@ ready = function(){
   			drop: function(event, ui){
   				var current_text = $(this).text()
   				$(this).text(current_text+$(ui.draggable[0]).text())
-  				$(ui.draggable[0]).text(" ")//makes suffix invisable to user
+  				$(ui.draggable[0]).remove()//makes suffix invisable to user
   				
   			}//end of drop:
   		});//end suffix droppable
@@ -138,19 +137,21 @@ ready = function(){
 
 
   	function createPunctuationDroppable(box){
-	  		var current_punc_drop = $('#sentence_parts #puncDrop');
-	  		current_punc_drop.droppable({
-	  		  		accept: box,
-	  	 			drop: function(event, ui){	 	
-	 				var current_text = $(this).text()
-	 				sentence_array.push($(ui.draggable[0]).text())
-	   				$(this).text(current_text+$(ui.draggable[0]).text())
-	   				$(ui.draggable[0]).remove()//makes punctuation box invisable to user
-	   				$('#puncDrop').attr('id', 'puncDropped')
-	  				
-	  		  		}//end of drop:
-	  		});//end punctuation droppable
-	  
+	  		var current_punc_drops = $('#sentence_parts .puncSelector');
+	 for(var p=0; p<current_punc_drops.length; p++){	
+			var current_punc_drop = $('#puncDrop'+[p]);
+			if(current_punc_drop){
+				current_punc_drop.droppable({
+						accept: box,
+					    drop: function(event, ui){
+						  	sentence_array.push($(ui.draggable[0]).text());
+						  	$(this).text($(ui.draggable[0]).text());
+						  	$(ui.draggable[0]).remove();//makes punctuation box invisable to user
+						  	$(this).attr('id', 'puncDropped');			
+						}//end of drop:
+				});//end punctuation droppable	
+			}//if ends
+	  }//end punc for loop
 	};// end of createPunctuationHolders
 
 	for(var k=0; k<8; k++){
@@ -161,6 +162,11 @@ ready = function(){
 		  		});
 	}//end createpunctuationDroppable for loop
 
+	function cycleThroughPuncDrop(dropps){
+		
+
+		  	
+	}
 
 
 	if(pathname==='/sentences/new'){ // only renders on new page
@@ -180,6 +186,8 @@ ready = function(){
 		});
 	}
 	function animateIncomingWordBoxes(box){
+// 		$('.audio').html(
+// "<embed src='"+'../public/SF.mp3'+"' hidden=true autostart=true loop=false>");
 		var randRotation = Math.floor((Math.random()*500)+10);		
 		TweenMax.from($(box), 1, {left: "900px", rotation:randRotation, scale:3});
 	} // end animateIncomingWordBoxes
