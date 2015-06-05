@@ -2,10 +2,11 @@ var ready;
 ready = function(){
 	var sentence_array =[];
 	var pathname = window.location.pathname; // Returns path 
-	
+	var counter =0;
 	var createDroppableObject = function(){
-  	  	$('#sentence_parts').append("<div id=droppable class='col-md-2'></div><div id=puncDrop class='col-md-1'></div")
-  		
+		
+  	  	$('#sentence_parts').append("<div id=droppable class='col-md-2'></div><div id=puncDrop"+counter+" class='puncSelector col-md-1'></div")
+  		counter ++
   	}//createDroppableObject end
   	
   		// getting data from database
@@ -136,19 +137,21 @@ ready = function(){
 
 
   	function createPunctuationDroppable(box){
-	  		var current_punc_drop = $('#sentence_parts #puncDrop');
-	  		current_punc_drop.droppable({
-	  		  		accept: box,
-	  	 			drop: function(event, ui){	
-	  	 				console.log(box)
-	 				sentence_array.push($(ui.draggable[0]).text())
-	   				current_punc_drop.text($(ui.draggable[0]).text())
-	   				$(ui.draggable[0]).remove()//makes punctuation box invisable to user
-	   				$('#puncDrop').attr('id', 'puncDropped')
-	  				
-	  		  		}//end of drop:
-	  		});//end punctuation droppable
-	  
+	  		var current_punc_drops = $('#sentence_parts .puncSelector');
+	 for(var p=0; p<current_punc_drops.length; p++){	
+			var current_punc_drop = $('#puncDrop'+[p]);
+			if(current_punc_drop){
+				current_punc_drop.droppable({
+						accept: box,
+					    drop: function(event, ui){
+						  	sentence_array.push($(ui.draggable[0]).text());
+						  	$(this).text($(ui.draggable[0]).text());
+						  	$(ui.draggable[0]).remove();//makes punctuation box invisable to user
+						  	$(this).attr('id', 'puncDropped');			
+						}//end of drop:
+				});//end punctuation droppable	
+			}//if ends
+	  }//end punc for loop
 	};// end of createPunctuationHolders
 
 	for(var k=0; k<8; k++){
@@ -159,6 +162,11 @@ ready = function(){
 		  		});
 	}//end createpunctuationDroppable for loop
 
+	function cycleThroughPuncDrop(dropps){
+		
+
+		  	
+	}
 
 
 	if(pathname==='/sentences/new'){ // only renders on new page
