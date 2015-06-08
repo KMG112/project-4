@@ -31,7 +31,7 @@ ready = function(){
 		  url: "/sentences",
 		  data: {words: sentence_array},
 		}).done(function (response) {
-			TweenMax.fromTo($('.biggah'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF', width: '1100px', height: '300px', x: '350px',y: '-500', boxShadow: '2px 4px 10px black, -3px -2px 7px black inset'}, {autoAlpha: .97, scale: 1.2, borderRadius: '10px', boxShadow: '10px 10px 40px black, -3px -2px 7px black inset'})
+			TweenMax.fromTo($('.biggah'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF', width: '800px', height: '300px', x: '300px',y: '-500', boxShadow: '2px 4px 10px black, -3px -2px 7px black inset'}, {autoAlpha: .97, color: 'black', scale: 1.2, borderRadius: '10px', boxShadow: '10px 10px 40px black, -3px -2px 7px black inset'})
   			$('body').on('click', function(){window.location = '/sentences'});
 		});
 		
@@ -127,10 +127,15 @@ ready = function(){
 	};// end of create suffixHolders
 
 
+	for(var k=0; k<8; k++){
+		createPunctuationDrag($('#punc'+k));
+	}//end createpunctuationDroppable for loop
+
 	function createPunctuationDrag(box){  	
 	  	box.draggable({
 	    	revert: "invalid",
 	    	drag: function(){
+	    		createPunctuationDroppable(box);
 	    	}
 	    	});//end punctuation draggable
 	  }// end create Punctuation Drag
@@ -147,26 +152,13 @@ ready = function(){
 						  	sentence_array.push($(ui.draggable[0]).text());
 						  	$(this).text($(ui.draggable[0]).text());
 						  	$(ui.draggable[0]).remove();//makes punctuation box invisable to user
-						  	$(this).attr('id', 'puncDropped');			
+						  	$(this).attr('id', 'puncDropped');				
 						}//end of drop:
 				});//end punctuation droppable	
 			}//if ends
 	  }//end punc for loop
 	};// end of createPunctuationHolders
 
-	for(var k=0; k<8; k++){
-		createPunctuationDrag($('#punc'+k))
-
-		$('#punc'+k).on('drag', function(){
-		  	createPunctuationDroppable(this);
-		  		});
-	}//end createpunctuationDroppable for loop
-
-	function cycleThroughPuncDrop(dropps){
-		
-
-		  	
-	}
 
 
 	if(pathname==='/sentences/new'){ // only renders on new page
