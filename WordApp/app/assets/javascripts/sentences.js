@@ -31,7 +31,7 @@ ready = function(){
 		  url: "/sentences",
 		  data: {words: sentence_array},
 		}).done(function (response) {
-			TweenMax.fromTo($('.biggah'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF', width: '800px', height: '300px', x: '300px',y: '-500', boxShadow: '2px 4px 10px black, -3px -2px 7px black inset'}, {autoAlpha: .97, scale: 1.2, borderRadius: '10px', boxShadow: '10px 10px 40px black, -3px -2px 7px black inset'})
+			TweenMax.fromTo($('.biggah'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF', width: '800px', height: '300px', x: '300px',y: '-500', boxShadow: '2px 4px 10px black, -3px -2px 7px black inset'}, {autoAlpha: .97, color: 'black', scale: 1.2, borderRadius: '10px', boxShadow: '10px 10px 40px black, -3px -2px 7px black inset'})
   			$('body').on('click', function(){window.location = '/sentences'});
 		});
 		
@@ -147,7 +147,8 @@ ready = function(){
 						  	sentence_array.push($(ui.draggable[0]).text());
 						  	$(this).text($(ui.draggable[0]).text());
 						  	$(ui.draggable[0]).remove();//makes punctuation box invisable to user
-						  	$(this).attr('id', 'puncDropped');			
+						  	$(this).attr('id', 'puncDropped');	
+						  	$(this).attr('class', 'col-md-1');			
 						}//end of drop:
 				});//end punctuation droppable	
 			}//if ends
