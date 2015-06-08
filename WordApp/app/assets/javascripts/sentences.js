@@ -135,6 +135,7 @@ ready = function(){
 	  	box.draggable({
 	    	revert: "invalid",
 	    	drag: function(){
+	    		createPunctuationDroppable(box);
 	    	}
 	    	});//end punctuation draggable
 	  }// end create Punctuation Drag
@@ -151,8 +152,7 @@ ready = function(){
 						  	sentence_array.push($(ui.draggable[0]).text());
 						  	$(this).text($(ui.draggable[0]).text());
 						  	$(ui.draggable[0]).remove();//makes punctuation box invisable to user
-						  	$(this).attr('id', 'puncDropped');	
-						  	$(this).attr('class', 'col-md-1');			
+						  	$(this).attr('id', 'puncDropped');				
 						}//end of drop:
 				});//end punctuation droppable	
 			}//if ends
