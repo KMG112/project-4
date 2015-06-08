@@ -127,6 +127,10 @@ ready = function(){
 	};// end of create suffixHolders
 
 
+	for(var k=0; k<8; k++){
+		createPunctuationDrag($('#punc'+k));
+	}//end createpunctuationDroppable for loop
+
 	function createPunctuationDrag(box){  	
 	  	box.draggable({
 	    	revert: "invalid",
@@ -155,19 +159,6 @@ ready = function(){
 	  }//end punc for loop
 	};// end of createPunctuationHolders
 
-	for(var k=0; k<8; k++){
-		createPunctuationDrag($('#punc'+k))
-
-		$('#punc'+k).on('drag', function(){
-		  	createPunctuationDroppable(this);
-		  		});
-	}//end createpunctuationDroppable for loop
-
-	function cycleThroughPuncDrop(dropps){
-		
-
-		  	
-	}
 
 
 	if(pathname==='/sentences/new'){ // only renders on new page
