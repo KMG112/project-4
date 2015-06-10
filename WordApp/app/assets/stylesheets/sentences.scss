@@ -1,7 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";  
 
-
 #body {
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #457CA1;
@@ -39,10 +38,16 @@
   background-color: #FFD87F;
   padding: 100px 0 100px 10px;
 }
+
+#words{
+  margin: auto;
+  width: 700px;
+}
+
 @for $i from 0 through 10{
   #box#{$i}{
   background-color: #FFD066;
-  margin-left: 10px;
+  margin: 0 0 10px 10px;
   line-height: 35px;
   width: 130px;
   height: 40px; 
@@ -247,4 +252,8 @@ box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
     color: #ffffff;
     background-color: #7ec0ee;
   }
+}
+
+.popover-title{
+  
 }
