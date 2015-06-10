@@ -187,6 +187,54 @@ ready = function(){
 	animateDroppingWords = function(){
 		TweenMax.staggerTo($("#words div"), .5, {y:1000}, 0.01)
 	}// end animateDroppingWords
+
+
+
+// Instance the tour
+var tour = new Tour({
+  name: "tour1",
+  backdrop: true,
+  backdropContainer: 'html',
+  backdropPadding: 'left',
+  steps: [
+  {
+    element: "#box1",
+    title: "These your word tiles",
+    content: "you drag any of them, simple click and hold"
+  },
+  {
+    element: "#droppable",
+    title: "Drop Words",
+    content: "This is where you drop your chosen word"
+  },
+  {
+    element: "#suffix",
+    title: "These are suffixes",
+    content: " you can drop them on any word tile and they will be added to the end of the word",
+  	placement: 'left'
+  },
+  {
+    element: "#punctuation",
+    title: "Punctuation",
+    content: "These are punctuation marks that you can click and drag aswell"
+  },
+  {
+    element: "#puncDrop0",
+    title: "Punctuation Drop zone",
+    content: "This is where you drop punctuation marks"
+  }]
+
+});
+
+
+// Initialize the tour
+setTimeout(function(){tour.init()}, 1000);
+
+// Start the tour
+setTimeout(function(){tour.start()}, 1001);
+
+
+
 };
 
 $(document).ready(ready);

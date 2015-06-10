@@ -1,7 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";  
 
-
 #body {
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #457CA1;
@@ -247,4 +246,8 @@ box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
     color: #ffffff;
     background-color: #7ec0ee;
   }
+}
+
+.popover-title{
+  
 }
