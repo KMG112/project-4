@@ -192,7 +192,7 @@ ready = function(){
 
 // Instance the tour
 var tour = new Tour({
-  name: "tour1",
+  name: "tm",
   backdrop: true,
   backdropContainer: 'html',
   backdropPadding: 'left',
