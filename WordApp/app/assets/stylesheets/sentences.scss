@@ -38,10 +38,16 @@
   background-color: #FFD87F;
   padding: 100px 0 100px 10px;
 }
+
+#words{
+  margin-left: 200px;
+  width: 600px;
+}
+
 @for $i from 0 through 10{
   #box#{$i}{
   background-color: #FFD066;
-  margin-left: 10px;
+  margin: 0 0 10px 10px;
   line-height: 35px;
   width: 110px;
   height: 40px; 
