@@ -24,15 +24,13 @@ ready = function(){
 
 	$('#new_sentence').on('submit', function(event){
 		event.preventDefault();
-		        $.ajax({
-				  type: "POST",
-				  url: "/sentences",
-				  data: {words: sentence_array},
-				}).done(function (response) {
-				  	console.log("sent success");
-				  	console.log(response);
-				});
-		window.location = '/sentences/'
+        $.ajax({
+		  type: "POST",
+		  url: "/sentences",
+		  data: {words: sentence_array},
+		}).done(function (response) {
+  			window.location = '/sentences/'
+		});
 	});// new_sentence submit end
 
 
@@ -43,7 +41,7 @@ ready = function(){
 
 		$('#words').remove();
 
-		$('body').append('<div id="words"></div>')
+		$('#words_holder').append('<div id="words"></div>')
 			for(var i=0; i<10; i++){
 				$('#words').append("<div id=box"+i+" class='ui-widget-header'>");
 				
