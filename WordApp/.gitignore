@@ -11,5 +11,8 @@
 /log/*
 !/log/.keep
 /tmp
+<<<<<<< HEAD
 
 .DS_Store
+=======
+>>>>>>> 43339d50e1ea209d4b3f2b5d96ae8894838bda6a
