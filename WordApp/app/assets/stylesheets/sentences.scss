@@ -35,6 +35,12 @@
   font-size: 40px;
 }
 
+#words{
+  margin: auto;
+  width: 700px;
+}
+
+
 #words_holder{
   background-color: #FFD87F;
   padding: 100px 0 100px 10px;
@@ -42,7 +48,7 @@
 @for $i from 0 through 10{
   #box#{$i}{
   background-color: #FFD066;
-  margin-left: 10px;
+  margin: 0 0 10px 10px;
   line-height: 35px;
   width: 130px;
   height: 40px; 
