@@ -7,7 +7,7 @@
       <li class="active"><a href="/sentences">Home</a></li>
     </ul>
     <ul class="nav navbar-nav">
-    <li class="active"><%= link_to "About", "/about" %></ul>
+    <li class="active"><%= link_to "About", "http://kmg112.github.io/" %></ul>
 
     <% if user_signed_in? %>
     <p class="navbar-text pull-right"><%= current_user.email %>| <a href=""><%= link_to "Sign Out",destroy_user_session_path, :method => :delete %></a></p>
