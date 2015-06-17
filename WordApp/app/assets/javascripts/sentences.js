@@ -47,7 +47,7 @@ ready = function(){
 		$('#words').remove();
 
 		$('#words_holder').append('<div id="words"></div>')
-			for(var i=0; i<10; i++){
+			for(var i=0; i<15; i++){
 				$('#words').append("<div id=box"+i+" class='col-md-2'>");
 				
 				
@@ -57,9 +57,15 @@ ready = function(){
 		  		
 		  		$('#box'+i).on('drag', function(){
 		  			makeDroppable(this);
+		  			$('#droppable').css({'box-shadow':"1px 1px 100px yellow, 1px 1px 10px yellow inset", 'opacity': '.6'})
 		  		});
-		  	animateIncomingWordBoxes($('#box'+i))
-		 	createSuffixDroppable($('#box'+i))
+
+		  		$('#box'+i).on('mouseleave', function(){
+		  			$('#droppable').css({'box-shadow':"none", 'opacity': '1'});
+		  			});		
+		  	
+		  	animateIncomingWordBoxes($('#box'+i));
+		 	createSuffixDroppable($('#box'+i));
 			}// for loop end
 			
 		ajax(); 
@@ -92,7 +98,7 @@ ready = function(){
             	  of: $('#droppable'),
                   my: "center"      	  
             	          });
-
+            $('#droppable').css('box-shadow', "none")
             renamingDroppableObjects(this)
   			wordDropTextTransfer(this, box);
             $(this).off();   //turns off droppability 

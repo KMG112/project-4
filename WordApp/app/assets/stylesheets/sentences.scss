@@ -45,7 +45,7 @@
   background-color: #FFD87F;
   padding: 100px 0 100px 10px;
 }
-@for $i from 0 through 10{
+@for $i from 0 through 15{
   #box#{$i}{
   background-color: #FFD066;
   margin: 0 0 10px 10px;
