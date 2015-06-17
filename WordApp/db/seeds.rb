@@ -62,7 +62,7 @@ Word.create("pos" => "noun","content" => "swords")
 Word.create("pos" => "noun","content" => "Tyrion Lanister")
 Word.create("pos" => "noun","content" => "Barack Obama")
 Word.create("pos" => "noun","content" => "eggs")
-Word.create("pos" => "noun","content" => "Washington D.C.")
+Word.create("pos" => "noun","content" => "Washington")
 Word.create("pos" => "noun","content" => "Africa")
 
 

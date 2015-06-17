@@ -136,19 +136,28 @@ ready = function(){
 
 	for(var k=0; k<8; k++){
 		createPunctuationDrag($('#punc'+k));
+
 	}//end createpunctuationDroppable for loop
 
 	function createPunctuationDrag(box){  	
 	  	box.draggable({
 	    	revert: "invalid",
 	    	drag: function(){
+
 	    		createPunctuationDroppable(box);
 	    	}
 	    	});//end punctuation draggable
+	  	box.on('drag', function(){
+	  		$('.puncSelector').css({'box-shadow':"1px 1px 100px blue, 1px 1px 10px yellow inset", 'opacity': '.6'});
+	  	});
+	  	$(box).on('mouseleave', function(){
+		  			$('.puncSelector').css({'box-shadow':"none", 'opacity': '1'});
+		  			});	
 	  }// end create Punctuation Drag
 
 
   	function createPunctuationDroppable(box){
+
 	  		var current_punc_drops = $('#sentence_parts .puncSelector');
 	 for(var p=0; p<current_punc_drops.length; p++){	
 			var current_punc_drop = $('#puncDrop'+[p]);
