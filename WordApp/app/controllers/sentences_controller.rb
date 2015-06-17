@@ -25,7 +25,7 @@ class SentencesController < ApplicationController
       words = []
       pos_array = ["pronoun","pronoun","noun","noun","adjective","adjective","others","verb","verb","interjection", "verb", "noun", "noun", "verb", "noun"]
 
-      while i<10# tried to put in model but didnt work
+      while i<15# tried to put in model but didnt work
         word = Word.getWord(pos_array[i])
         words << word
         i+= 1
