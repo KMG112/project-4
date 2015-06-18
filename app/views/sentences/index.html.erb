@@ -1,0 +1,28 @@
+<div class="container">
+
+
+<%= link_to 'New Sentence', new_sentence_path, class: 'indexBTN center-block btn btn-primary ', id: "new_sentence_button"%>
+
+<div class="panel panel-default">
+
+    <table class="table" id="list_of_sentences">
+      <tbody> 
+        <% @sentences.each do |sentence| %>
+          <tr>
+           <% if sentence.words%>  
+             <% sentence.words[0].capitalize! %> 
+             <td ><%= sentence.words.join(" ")%></td>
+            <%end%>
+
+            <td><%= link_to 'Delete', sentence, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default', style: 'width:100%;'%></td>
+          </tr>
+        <% end %>
+      </tbody>
+
+
+    </table>
+  </div>
+<br>
+
+
+</div>

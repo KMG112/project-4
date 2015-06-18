@@ -24,7 +24,6 @@ ready = function(){
 
 
 	$('#new_sentence').on('submit', function(event){
-		pushToArray()
 		$(body).append("<div class='biggah'>"+sentence_array.join(" ")+"</div>")
 		event.preventDefault();
         $.ajax({
@@ -32,7 +31,6 @@ ready = function(){
 		  url: "/sentences",
 		  data: {words: sentence_array},
 		}).done(function (response) {
-			$('.major').remove();
 			TweenMax.fromTo($('.biggah'), 1,{autoAlpha: 0, backgroundColor: '#87CEFF', width: '800px', height: '300px', x: '300px',y: '-500', boxShadow: '2px 4px 10px black, -3px -2px 7px black inset'}, {autoAlpha: .97, color: 'black', scale: 1.2, borderRadius: '10px', boxShadow: '10px 10px 40px black, -3px -2px 7px black inset'})
   			$('body').on('click', function(){window.location = '/sentences'});
 		});
@@ -48,7 +46,7 @@ ready = function(){
 		$('#words').remove();
 
 		$('#words_holder').append('<div id="words"></div>')
-			for(var i=0; i<15; i++){
+			for(var i=0; i<10; i++){
 				$('#words').append("<div id=box"+i+" class='col-md-2'>");
 				
 				
@@ -58,15 +56,9 @@ ready = function(){
 		  		
 		  		$('#box'+i).on('drag', function(){
 		  			makeDroppable(this);
-		  			$('#droppable').css({'box-shadow':"1px 1px 100px yellow, 1px 1px 10px yellow inset", 'opacity': '.6'})
 		  		});
-
-		  		$('#box'+i).on('mouseleave', function(){
-		  			$('#droppable').css({'box-shadow':"none", 'opacity': '1'});
-		  			});		
-		  	
-		  	animateIncomingWordBoxes($('#box'+i));
-		 	createSuffixDroppable($('#box'+i));
+		  	animateIncomingWordBoxes($('#box'+i))
+		 	createSuffixDroppable($('#box'+i))
 			}// for loop end
 			
 		ajax(); 
@@ -81,7 +73,7 @@ ready = function(){
 
 
 	var wordDropTextTransfer = function(droppableBox, wordBox){
-		// sentence_array.push($(wordBox).text());
+		sentence_array.push($(wordBox).text());
   		var current_text = $(droppableBox).text()
   		$(droppableBox).text($(wordBox).text()+current_text);
 	}
@@ -99,7 +91,7 @@ ready = function(){
             	  of: $('#droppable'),
                   my: "center"      	  
             	          });
-            $('#droppable').css('box-shadow', "none")
+
             renamingDroppableObjects(this)
   			wordDropTextTransfer(this, box);
             $(this).off();   //turns off droppability 
@@ -116,14 +108,9 @@ ready = function(){
   	$('#suffixes p').draggable({
     	revert: "invalid",
     	drag: function(){
-    		}
-    });
- 	$('#suffixes p').on("drag", function(){
- 		$('#words div').css('box-shadow', "1px 1px 100px yellow, 1px 1px 10px yellow inset");
- 	})
- 	$('#suffixes p').on('mouseleave', function(){
- 		$('#words div').css({'box-shadow':"none", 'opacity': '1'});
- 	});
+    	}
+    	});
+ 
 
   	// };
   	function createSuffixDroppable(box){
@@ -139,9 +126,9 @@ ready = function(){
 
 	};// end of create suffixHolders
 
+
 	for(var k=0; k<8; k++){
 		createPunctuationDrag($('#punc'+k));
-		
 	}//end createpunctuationDroppable for loop
 
 	function createPunctuationDrag(box){  	
@@ -151,43 +138,28 @@ ready = function(){
 	    		createPunctuationDroppable(box);
 	    	}
 	    	});//end punctuation draggable
-	  	box.on('drag', function(){
-	  		$('.puncSelector').css({'box-shadow':"1px 1px 100px blue, 1px 1px 10px yellow inset", 'opacity': '.6'});
-	  	});
-	  	$(box).on('mouseleave', function(){
-		  	$('.puncSelector').css({'box-shadow':"none", 'opacity': '1'});
-		});	
-	
 	  }// end create Punctuation Drag
 
 
   	function createPunctuationDroppable(box){
-
-	 var current_punc_drops = $('#sentence_parts .puncSelector');
+	  		var current_punc_drops = $('#sentence_parts .puncSelector');
 	 for(var p=0; p<current_punc_drops.length; p++){	
 			var current_punc_drop = $('#puncDrop'+[p]);
 			if(current_punc_drop){
 				current_punc_drop.droppable({
 						accept: box,
 					    drop: function(event, ui){
+						  	sentence_array.push($(ui.draggable[0]).text());
 						  	$(this).text($(ui.draggable[0]).text());
 						  	$(ui.draggable[0]).remove();//makes punctuation box invisable to user
-						  	$(this).attr('id', 'puncDropped');
-						  	$('.puncSelector').css('box-shadow', "none");
-						  	$('#puncDropped').css('box-shadow', "none")				
+						  	$(this).attr('id', 'puncDropped');				
 						}//end of drop:
 				});//end punctuation droppable	
 			}//if ends
 	  }//end punc for loop
 	};// end of createPunctuationHolders
 
-	//adds chosen words to sentence array then pushed to database
-	function pushToArray(){
-		$('#sentence_parts div').each(function(index){
-			var text = $(this).text()
-			sentence_array.push(text)
-		})
-	}//pushToArray end
+
 
 	if(pathname==='/sentences/new'){ // only renders on new page
 		createDroppableObject();// creates the bucket to drop word into
@@ -206,6 +178,8 @@ ready = function(){
 		});
 	}
 	function animateIncomingWordBoxes(box){
+// 		$('.audio').html(
+// "<embed src='"+'../public/SF.mp3'+"' hidden=true autostart=true loop=false>");
 		var randRotation = Math.floor((Math.random()*500)+10);		
 		TweenMax.from($(box), 1, {left: "900px", rotation:randRotation, scale:3});
 	} // end animateIncomingWordBoxes
@@ -213,6 +187,54 @@ ready = function(){
 	animateDroppingWords = function(){
 		TweenMax.staggerTo($("#words div"), .5, {y:1000}, 0.01)
 	}// end animateDroppingWords
+
+
+
+// Instance the tour
+var tour = new Tour({
+  name: "tm",
+  backdrop: true,
+  backdropContainer: 'html',
+  backdropPadding: 'left',
+  steps: [
+  {
+    element: "#box1",
+    title: "These your word tiles",
+    content: "you drag any of them, simple click and hold"
+  },
+  {
+    element: "#droppable",
+    title: "Drop Words",
+    content: "This is where you drop your chosen word"
+  },
+  {
+    element: "#suffix",
+    title: "These are suffixes",
+    content: " you can drop them on any word tile and they will be added to the end of the word",
+  	placement: 'left'
+  },
+  {
+    element: "#punctuation",
+    title: "Punctuation",
+    content: "These are punctuation marks that you can click and drag aswell"
+  },
+  {
+    element: "#puncDrop0",
+    title: "Punctuation Drop zone",
+    content: "This is where you drop punctuation marks"
+  }]
+
+});
+
+
+// Initialize the tour
+setTimeout(function(){tour.init()}, 1000);
+
+// Start the tour
+setTimeout(function(){tour.start()}, 1001);
+
+
+
 };
 
 $(document).ready(ready);

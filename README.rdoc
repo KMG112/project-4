@@ -1,0 +1,12 @@
+== README
+
+single page app
+
+words will be in datafile, array of some sort in the initializer folder? maybe in own data table  in active record. 
+
+sentences will belong to users, and sentences will have five slots
+
+maybe later there will be a randomizer that randomly selects length of sentence (ICEBOX)
+
+
+

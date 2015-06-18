@@ -1,7 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";  
 
-
 #body {
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #457CA1;
@@ -18,7 +17,6 @@
 }
 
 #game{
-    cursor: pointer;
     background-color: #457CA1;
 }
 #board{
@@ -30,11 +28,15 @@
   width: 100%;
 }
 .biggah{
-  cursor: pointer;
   color: transparent;
   padding:30px;
   text-align: center;
   font-size: 40px;
+}
+
+#words_holder{
+  background-color: #FFD87F;
+  padding: 100px 0 100px 10px;
 }
 
 #words{
@@ -42,14 +44,8 @@
   width: 700px;
 }
 
-
-#words_holder{
-  background-color: #FFD87F;
-  padding: 100px 0 100px 10px;
-}
-@for $i from 0 through 15{
+@for $i from 0 through 10{
   #box#{$i}{
-  overflow: hidden;
   background-color: #FFD066;
   margin: 0 0 10px 10px;
   line-height: 35px;
@@ -256,4 +252,8 @@ box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
     color: #ffffff;
     background-color: #7ec0ee;
   }
+}
+
+.popover-title{
+  
 }
