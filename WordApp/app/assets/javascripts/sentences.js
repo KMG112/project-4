@@ -24,6 +24,7 @@ ready = function(){
 
 
 	$('#new_sentence').on('submit', function(event){
+		pushToArray()
 		$(body).append("<div class='biggah'>"+sentence_array.join(" ")+"</div>")
 		event.preventDefault();
         $.ajax({
@@ -80,7 +81,7 @@ ready = function(){
 
 
 	var wordDropTextTransfer = function(droppableBox, wordBox){
-		sentence_array.push($(wordBox).text());
+		// sentence_array.push($(wordBox).text());
   		var current_text = $(droppableBox).text()
   		$(droppableBox).text($(wordBox).text()+current_text);
 	}
@@ -115,9 +116,14 @@ ready = function(){
   	$('#suffixes p').draggable({
     	revert: "invalid",
     	drag: function(){
-    	}
-    	});
- 
+    		}
+    });
+ 	$('#suffixes p').on("drag", function(){
+ 		$('#words div').css('box-shadow', "1px 1px 100px yellow, 1px 1px 10px yellow inset");
+ 	})
+ 	$('#suffixes p').on('mouseleave', function(){
+ 		$('#words div').css({'box-shadow':"none", 'opacity': '1'});
+ 	});
 
   	// };
   	function createSuffixDroppable(box){
@@ -133,17 +139,15 @@ ready = function(){
 
 	};// end of create suffixHolders
 
-
 	for(var k=0; k<8; k++){
 		createPunctuationDrag($('#punc'+k));
-
+		
 	}//end createpunctuationDroppable for loop
 
 	function createPunctuationDrag(box){  	
 	  	box.draggable({
 	    	revert: "invalid",
 	    	drag: function(){
-
 	    		createPunctuationDroppable(box);
 	    	}
 	    	});//end punctuation draggable
@@ -151,31 +155,39 @@ ready = function(){
 	  		$('.puncSelector').css({'box-shadow':"1px 1px 100px blue, 1px 1px 10px yellow inset", 'opacity': '.6'});
 	  	});
 	  	$(box).on('mouseleave', function(){
-		  			$('.puncSelector').css({'box-shadow':"none", 'opacity': '1'});
-		  			});	
+		  	$('.puncSelector').css({'box-shadow':"none", 'opacity': '1'});
+		});	
+	
 	  }// end create Punctuation Drag
 
 
   	function createPunctuationDroppable(box){
 
-	  		var current_punc_drops = $('#sentence_parts .puncSelector');
+	 var current_punc_drops = $('#sentence_parts .puncSelector');
 	 for(var p=0; p<current_punc_drops.length; p++){	
 			var current_punc_drop = $('#puncDrop'+[p]);
 			if(current_punc_drop){
 				current_punc_drop.droppable({
 						accept: box,
 					    drop: function(event, ui){
-						  	sentence_array.push($(ui.draggable[0]).text());
 						  	$(this).text($(ui.draggable[0]).text());
 						  	$(ui.draggable[0]).remove();//makes punctuation box invisable to user
-						  	$(this).attr('id', 'puncDropped');				
+						  	$(this).attr('id', 'puncDropped');
+						  	$('.puncSelector').css('box-shadow', "none");
+						  	$('#puncDropped').css('box-shadow', "none")				
 						}//end of drop:
 				});//end punctuation droppable	
 			}//if ends
 	  }//end punc for loop
 	};// end of createPunctuationHolders
 
-
+	//adds chosen words to sentence array then pushed to database
+	function pushToArray(){
+		$('#sentence_parts div').each(function(index){
+			var text = $(this).text()
+			sentence_array.push(text)
+		})
+	}//pushToArray end
 
 	if(pathname==='/sentences/new'){ // only renders on new page
 		createDroppableObject();// creates the bucket to drop word into
@@ -194,8 +206,6 @@ ready = function(){
 		});
 	}
 	function animateIncomingWordBoxes(box){
-// 		$('.audio').html(
-// "<embed src='"+'../public/SF.mp3'+"' hidden=true autostart=true loop=false>");
 		var randRotation = Math.floor((Math.random()*500)+10);		
 		TweenMax.from($(box), 1, {left: "900px", rotation:randRotation, scale:3});
 	} // end animateIncomingWordBoxes
