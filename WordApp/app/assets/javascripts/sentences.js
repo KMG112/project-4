@@ -160,7 +160,6 @@ ready = function(){
 	
 	  }// end create Punctuation Drag
 
-
   	function createPunctuationDroppable(box){
 
 	 var current_punc_drops = $('#sentence_parts .puncSelector');

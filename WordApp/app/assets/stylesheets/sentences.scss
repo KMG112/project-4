@@ -18,7 +18,7 @@
 }
 
 #game{
-    cursor: pointer;
+    
     background-color: #457CA1;
 }
 #board{
@@ -49,6 +49,7 @@
 }
 @for $i from 0 through 15{
   #box#{$i}{
+  cursor: pointer;
   overflow: hidden;
   background-color: #FFD066;
   margin: 0 0 10px 10px;
@@ -117,6 +118,7 @@ box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
   width: 40px;
   display: inline-block;
   padding: 5px;
+  cursor: pointer;
   &:hover{
     box-shadow: 10px 10px 20px #003354, -3px -2px 7px black inset;
   }
@@ -130,6 +132,7 @@ box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
    margin-top: 20px;
 }
 #punctuation p{
+  cursor: pointer;
   box-shadow: 2px 4px 10px black, -3px -2px 7px black inset;
   border: none;
   line-height: 1;

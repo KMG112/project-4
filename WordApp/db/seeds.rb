@@ -105,7 +105,9 @@ Word.create("pos" => "verb","content" => "chop")
 Word.create("pos" => "verb","content" => "play")
 Word.create("pos" => "verb","content" => "dance")
 Word.create("pos" => "verb","content" => "prance")
-Word.create("pos" => "verb","content" => "eat")
+Word.create("pos" => "verb","content" => "finagle")
+Word.create("pos" => "verb","content" => "bamboozle")
+Word.create("pos" => "verb","content" => "janky")
 
 
 
